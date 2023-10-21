@@ -23,7 +23,7 @@ const Menu = () => {
                 (<li key={item.name}>
                     <Link href={item.url} className='flex flex-row justify-center items-center gap-3 px-2 py-6 bg-black text-white'>
                         <Image src={item.logo} alt={`${item.name}のアイコン`} width={22} height={22} />
-                        <span className='text-[1.6rem]'>
+                        <span className='text-[1.5rem]'>
                             {item.name}
                         </span>
                     </Link>
