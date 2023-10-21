@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './styles/globals.css'
 import Header from './components/Header'
 import { urbanist } from './fonts'
+import Menu from './components/Menu'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,7 +19,9 @@ export default function RootLayout({
     <html lang="ja">
       <body>
         <Header />
-        {children}</body>
+        {children}
+        <Menu />
+        </body>
     </html>
   )
 }

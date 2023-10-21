@@ -15,7 +15,7 @@ const config: Config = {
       },
       colors: {
         white: '#FFFFFF',
-        blck: "#423D35",
+        black: "#423D35",
         gray: "#F5F5F5",
         line: "#D6DCDF",
         danger: "#B13131"
