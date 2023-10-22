@@ -5,6 +5,7 @@ import Header from './components/Header'
 import { urbanist } from './fonts'
 import Menu from './components/Menu'
 import Breadcrumb from './components/Breadcrumb'
+import Button from './components/Button'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
