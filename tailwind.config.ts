@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      width: {
+        defaultWidth: `calc(100% - 3.2rem)`,
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -30,16 +33,26 @@ const config: Config = {
         defaultTitle: [
           "2rem",
           {
+            fontWeight: "bold",
             lineHeight: "1.5"
           }
         ],
         lGTitle: [
           "2.4rem",
           {
+            fontWeight: "bold",
             lineHeight: "1.5"
           }
         
         ]
+      },
+      borderRadius: {
+        sm: ".4rem",
+        md: ".6rem",
+        lg: ".8rem",
+        xl: "1rem",
+        xxl: "1.2rem",
+
       }
     },
   },
