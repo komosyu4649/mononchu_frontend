@@ -13,11 +13,11 @@ const Breadcrumb = ({
 
 }) => {
   return (
-    <nav className='px-[1.6rem] py-2 bg-gray border-b border-line'>
+    <nav className='px-[1.6rem] bg-gray border-b border-line'>
         <ol className='flex flex-row gap-3 items-center'>
             {crumbs.map((crumb, index) => (
             <li key={crumb.name} className='flex flex-row items-center gap-3'>
-                <Link href={crumb.url} className=''>
+                <Link href={crumb.url} className='py-2'>
                     <span className='text-[1.2rem]'>
                         {crumb.name}
                     </span>
