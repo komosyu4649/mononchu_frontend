@@ -3,7 +3,7 @@ import Button from '@/components/Button'
 import CategoryCard from '@/components/stuff/CategoryCard'
 import React from 'react'
 
-export default function page() {
+export default function Stuff() {
   return (
     <>
         <Breadcrumb
