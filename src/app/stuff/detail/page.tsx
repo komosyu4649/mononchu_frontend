@@ -1,6 +1,7 @@
 import { urbanist } from '@/app/fonts'
 import Breadcrumb from '@/components/Breadcrumb'
 import Label from '@/components/Label'
+import PropertyCard from '@/components/stuff/PropertyCard'
 import Link from 'next/link'
 import React from 'react'
 
@@ -26,14 +27,14 @@ export default function StuffDetail() {
         <main className="w-defaultWidth m-auto mt-16">
             <div className="grid grid-cols-[1fr_auto] items-end pb-10 border-b border-line">
                 <div className="flex flex-col gap-4">
-                    <span className={`w-fit px-4 py-2 text-[1.4rem] font-bold bg-gray rounded-sm ${urbanist.className}`}>
+                    <span className={`w-fit px-4 py-2 text-[1.2rem] font-bold bg-gray rounded-sm ${urbanist.className}`}>
                         No.1
                     </span>
                     <h1 className='text-[2.4rem] font-bold'>
                         洋服
                     </h1>
                 </div>
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4 items-end">
                     <div className='flex flex-row items-center gap-2'>
                         <Label>4</Label>
                         <span className='text-[1rem] font-bold'>
@@ -52,6 +53,16 @@ export default function StuffDetail() {
                         </Link>
                     </div>
                 </div>
+            </div>
+            <div className="">
+                <h2 className="">
+                    所有しているモノ
+                </h2>
+                <ul className="grid grid-cols-2 gap-[.8rem] mb-8">
+                    <li className="">
+                        <PropertyCard />
+                    </li>
+                </ul>
             </div>
         </main>
     </>
