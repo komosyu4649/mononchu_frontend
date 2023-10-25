@@ -6,7 +6,7 @@ import Label from '../Label'
 const CategoryCard = () => {
   return (
     <Link 
-      href="/stuff/category" 
+      href="/stuff/detail" 
       className='flex flex-col items-center gap-4 p-4 border border-line rounded-lg overflow-hidden'>
         <span className={`w-fit px-4 py-2 text-[1rem] font-bold bg-gray rounded-sm ${urbanist.className}`}>
           No.1

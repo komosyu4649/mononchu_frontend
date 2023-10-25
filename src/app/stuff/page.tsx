@@ -28,7 +28,7 @@ export default function Stuff() {
                         <CategoryCard />
                     </li>
                 </ul>
-                <Button>
+                <Button href="/stuff/new">
                     カテゴリーを追加
                 </Button>
             </div>
