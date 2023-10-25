@@ -1,7 +1,9 @@
 import { urbanist } from '@/app/fonts'
 import Breadcrumb from '@/components/Breadcrumb'
+import Button from '@/components/Button'
 import Label from '@/components/Label'
 import PropertyCard from '@/components/stuff/PropertyCard'
+import WantCard from '@/components/stuff/WantCard'
 import Link from 'next/link'
 import React from 'react'
 
@@ -54,15 +56,49 @@ export default function StuffDetail() {
                     </div>
                 </div>
             </div>
-            <div className="">
-                <h2 className="">
+            <div className="mt-10">
+                <h2 className="inline-block mb-6 px-6 py-2 text-[1.2rem] text-white font-bold bg-black rounded-full">
                     所有しているモノ
                 </h2>
-                <ul className="grid grid-cols-2 gap-[.8rem] mb-8">
+                <ul className="grid grid-cols-2 gap-[.8rem] mb-6">
+                    <li className="">
+                        <PropertyCard />
+                    </li>
+                    <li className="">
+                        <PropertyCard />
+                    </li>
+                    <li className="">
+                        <PropertyCard />
+                    </li>
                     <li className="">
                         <PropertyCard />
                     </li>
                 </ul>
+                <Button>
+                    アイテムを追加
+                </Button>
+            </div>
+            <div className="mt-10">
+                <h2 className="inline-block mb-6 px-6 py-2 text-[1.2rem] font-bold border border-line rounded-full">
+                    欲しいモノ
+                </h2>
+                <ul className="grid grid-cols-2 gap-x-[.8rem] gap-y-6 mb-6">
+                    <li className="">
+                        <WantCard />
+                    </li>
+                    <li className="">
+                        <WantCard />
+                    </li>
+                    <li className="">
+                        <WantCard />
+                    </li>
+                    <li className="">
+                        <WantCard />
+                    </li>
+                </ul>
+                <Button color="light">
+                    アイテムを追加
+                </Button>
             </div>
         </main>
     </>

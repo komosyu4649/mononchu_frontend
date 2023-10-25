@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body>
+      <body className='mb-36'>
         <Header />
         {children}
         <Menu />

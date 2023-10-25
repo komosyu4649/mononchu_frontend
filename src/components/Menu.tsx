@@ -17,7 +17,7 @@ const Menu = () => {
     ]
 
     return (
-        <nav className='fixed bottom-0 left-0 w-full bg-white'>
+        <nav className='fixed bottom-0 left-0 w-full bg-white z-50'>
             <ul className='grid grid-cols-[1fr_1fr] gap-[1px]'>
                 {menu.map((item, index) =>             
                 (<li key={item.name}>
