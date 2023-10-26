@@ -7,12 +7,12 @@ const Menu = () => {
     {
       name: 'モノ',
       url: '/stuff',
-      logo: '/assets/img/common/logo_stuff.svg',
+      logo: '/assets/img/common/icon_stuff.svg',
     },
     {
       name: '資産',
       url: '/asset',
-      logo: '/assets/img/common/logo_asset.svg',
+      logo: '/assets/img/common/icon_asset.svg',
     },
   ]
 

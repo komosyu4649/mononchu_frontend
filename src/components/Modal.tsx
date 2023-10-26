@@ -27,7 +27,7 @@ const Modal = (props: Props) => {
           }}
         >
           <Image
-            src='/assets/img/common/logo_close.svg'
+            src='/assets/img/common/icon_close.svg'
             alt='閉じる'
             width={22}
             height={22}
