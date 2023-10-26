@@ -21,7 +21,7 @@ const Modal = (props: Props) => {
       <div className='relative w-defaultWidth h-fit'>
         {props.children}
         <button
-          className='absolute -top-4 -right-4 w-fit p-4 rounded-full bg-black border border-line'
+          className='absolute -top-4 -right-4 w-fit p-4 rounded-full bg-black'
           onClick={() => {
             props.onClose()
           }}

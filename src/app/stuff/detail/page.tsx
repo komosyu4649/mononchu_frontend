@@ -15,6 +15,9 @@ export default function StuffDetail() {
   // 編集モーダル
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
   const openEditModal = () => setIsEditModalOpen(true)
+  // 削除モーダル
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
+  const openDeleteModal = () => setIsDeleteModalOpen(true)
   return (
     <>
       {isEditModalOpen && (
@@ -34,6 +37,25 @@ export default function StuffDetail() {
             </div>
             <Button>追加</Button>
           </form>
+        </Modal>
+      )}
+      {isDeleteModalOpen && (
+        <Modal onClose={() => setIsDeleteModalOpen(false)}>
+          <div className='p-8 bg-white rounded-xl'>
+            <div className='flex flex-col gap-6'>
+              <h2 className='text-[1.8rem] font-bold text-center'>完全に削除しますか？</h2>
+              <p className='text-defaultText text-center'>
+                「洋服」カテゴリーを完全に削除しますか？ <br />
+                この操作は戻すことができません。
+              </p>
+            </div>
+            <div className='flex flex-row gap-4 mt-8'>
+              <Button color='dangerRev'>削除</Button>
+              <Button color='light' onClick={() => setIsDeleteModalOpen(false)}>
+                キャンセル
+              </Button>
+            </div>
+          </div>
         </Modal>
       )}
       <Breadcrumb
@@ -72,7 +94,9 @@ export default function StuffDetail() {
               <button className='inline text-[1.2rem] underline' onClick={openEditModal}>
                 編集
               </button>
-              <button className='inline text-[1.2rem] underline'>削除</button>
+              <button className='inline text-[1.2rem] underline' onClick={openDeleteModal}>
+                削除
+              </button>
             </div>
           </div>
         </div>
