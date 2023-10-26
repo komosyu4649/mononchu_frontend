@@ -3,6 +3,7 @@
 import { urbanist } from '@/app/fonts'
 import Breadcrumb from '@/components/Breadcrumb'
 import Button from '@/components/Button'
+import Input from '@/components/Input'
 import Label from '@/components/Label'
 import Modal from '@/components/Modal'
 import PropertyCard from '@/components/stuff/PropertyCard'
@@ -16,7 +17,25 @@ export default function StuffDetail() {
   const openEditModal = () => setIsEditModalOpen(true)
   return (
     <>
-      {isEditModalOpen && <Modal onClose={() => setIsEditModalOpen(false)} />}
+      {isEditModalOpen && (
+        <Modal onClose={() => setIsEditModalOpen(false)}>
+          <form action='' className='p-8 bg-white rounded-xl'>
+            <div className='flex flex-col gap-8 mb-12'>
+              <Input
+                id='cat-name'
+                label='カテゴリー名'
+                placeholder='カテゴリー名を入力してください'
+              />
+              <Input
+                id='cat-limit'
+                label='アイテム上限数'
+                placeholder='アイテム上限数を入力してください'
+              />
+            </div>
+            <Button>追加</Button>
+          </form>
+        </Modal>
+      )}
       <Breadcrumb
         crumbs={[
           {
