@@ -24,13 +24,13 @@ export default function StuffDetailProperty() {
             url: '/stuff/detail',
           },
           {
-            name: '所有しているモノ',
+            name: '欲しいモノ',
             url: '/property',
           },
         ]}
       />
       <main className='w-defaultWidth m-auto mt-16'>
-        <div className='grid grid-cols-[1fr_auto] items-end pb-10 border-b border-line'>
+        <div className='grid grid-cols-[1fr_auto] items-end gap-12 pb-10 border-b border-line'>
           <div className='flex flex-col gap-4'>
             <span
               className={`w-fit px-4 py-2 text-[1.2rem] font-bold bg-gray rounded-sm ${urbanist.className}`}
@@ -52,13 +52,13 @@ export default function StuffDetailProperty() {
         </div>
         <div className='mt-10'>
           <div className='flex flex-row justify-between items-center mb-6'>
-            <h2 className='inline-block px-6 py-2 text-[1.2rem] text-white font-bold bg-black rounded-full'>
-              所有しているモノ
+            <h2 className='inline-block px-6 py-2 text-[1.2rem] font-bold border border-line rounded-full'>
+              欲しいモノ
             </h2>
             <div className='flex flex-row items-center gap-2'>
-              <Label size='md'>4</Label>
-              <span className='text-[1.2rem] font-bold'>/</span>
-              <Label size='md'>10</Label>
+              <Label size='md'>14</Label>
+              <span className={`text-[1.2rem] font-bold ${urbanist.className}`}>=</span>
+              <span className={`text-[1.2rem] font-bold ${urbanist.className}`}>¥121,000</span>
             </div>
           </div>
           <ul className='grid grid-cols-2 gap-[.8rem] mb-6'>

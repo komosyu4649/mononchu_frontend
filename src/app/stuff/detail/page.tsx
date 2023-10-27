@@ -75,21 +75,26 @@ export default function StuffDetail() {
         ]}
       />
       <main className='w-defaultWidth m-auto mt-16'>
-        <div className='grid grid-cols-[1fr_auto] items-end pb-10 border-b border-line'>
+        <div className='grid grid-cols-[1fr_auto] items-end gap-12 pb-10 border-b border-line'>
           <div className='flex flex-col gap-4'>
             <span
               className={`w-fit px-4 py-2 text-[1.2rem] font-bold bg-gray rounded-sm ${urbanist.className}`}
             >
               No.1
             </span>
-            <h1 className='text-[2.4rem] font-bold'>洋服</h1>
+            <h1 className='flex flex-row gap-4 items-center'>
+              <span className='p-3 text-[2.8em] border border-line rounded-lg leading-none'>
+                &#128084;
+              </span>
+              <span className='text-[2rem] font-bold'>洋服</span>
+            </h1>
           </div>
           <div className='flex flex-col gap-4 items-end'>
-            <div className='flex flex-row items-center gap-2'>
+            {/* <div className='flex flex-row items-center gap-2'>
               <Label>4</Label>
               <span className='text-[1rem] font-bold'>/</span>
               <Label>10</Label>
-            </div>
+            </div> */}
             <div className='flex flex-row gap-4'>
               <button className='inline text-[1.2rem] underline' onClick={openEditModal}>
                 編集
@@ -101,9 +106,16 @@ export default function StuffDetail() {
           </div>
         </div>
         <div className='mt-10'>
-          <h2 className='inline-block mb-6 px-6 py-2 text-[1.2rem] text-white font-bold bg-black rounded-full'>
-            所有しているモノ
-          </h2>
+          <div className='flex flex-row justify-between items-center mb-6'>
+            <h2 className='inline-block px-6 py-2 text-[1.2rem] text-white font-bold bg-black rounded-full'>
+              所有しているモノ
+            </h2>
+            <div className='flex flex-row items-center gap-2'>
+              <Label size='md'>4</Label>
+              <span className='text-[1.2rem] font-bold'>/</span>
+              <Label size='md'>10</Label>
+            </div>
+          </div>
           <ul className='grid grid-cols-2 gap-[.8rem] mb-6'>
             <li className=''>
               <PropertyCard />
@@ -118,12 +130,19 @@ export default function StuffDetail() {
               <PropertyCard />
             </li>
           </ul>
-          <Button>アイテムを追加</Button>
+          <Button href='/stuff/detail/property'>所有しているモノ一覧</Button>
         </div>
         <div className='mt-10'>
-          <h2 className='inline-block mb-6 px-6 py-2 text-[1.2rem] font-bold border border-line rounded-full'>
-            欲しいモノ
-          </h2>
+          <div className='flex flex-row justify-between items-center mb-6'>
+            <h2 className='inline-block px-6 py-2 text-[1.2rem] font-bold border border-line rounded-full'>
+              欲しいモノ
+            </h2>
+            <div className='flex flex-row items-center gap-2'>
+              <Label size='md'>14</Label>
+              <span className={`text-[1.2rem] font-bold ${urbanist.className}`}>=</span>
+              <span className={`text-[1.2rem] font-bold ${urbanist.className}`}>¥121,000</span>
+            </div>
+          </div>
           <ul className='grid grid-cols-2 gap-x-[.8rem] gap-y-6 mb-6'>
             <li className=''>
               <WantCard />
@@ -138,7 +157,9 @@ export default function StuffDetail() {
               <WantCard />
             </li>
           </ul>
-          <Button color='light'>アイテムを追加</Button>
+          <Button color='light' href='/stuff/detail/want'>
+            欲しいモノ一覧
+          </Button>
         </div>
       </main>
     </>
