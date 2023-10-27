@@ -43,7 +43,7 @@ export default function page() {
               placeholder='アイテム上限数を入力してください'
             />
           </div>
-          <Button>追加</Button>
+          <Button>変更</Button>
         </form>
       </main>
     </>
