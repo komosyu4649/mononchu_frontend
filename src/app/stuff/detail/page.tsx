@@ -116,16 +116,16 @@ export default function StuffDetail() {
           </div>
           <ul className='grid grid-cols-2 gap-[.8rem] mb-6'>
             <li className=''>
-              <PropertyCard />
+              <PropertyCard href='/stuff/detail/detail' />
             </li>
             <li className=''>
-              <PropertyCard />
+              <PropertyCard href='/stuff/detail/detail' />
             </li>
             <li className=''>
-              <PropertyCard />
+              <PropertyCard href='/stuff/detail/detail' />
             </li>
             <li className=''>
-              <PropertyCard />
+              <PropertyCard href='/stuff/detail/detail' />
             </li>
           </ul>
           <Button href='/stuff/detail/property'>所有しているモノ一覧</Button>

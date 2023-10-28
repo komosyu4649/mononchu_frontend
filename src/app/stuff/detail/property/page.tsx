@@ -61,16 +61,16 @@ export default function StuffDetailProperty() {
           </div>
           <ul className='grid grid-cols-2 gap-[.8rem] mb-6'>
             <li className=''>
-              <PropertyCard />
+              <PropertyCard href='' />
             </li>
             <li className=''>
-              <PropertyCard />
+              <PropertyCard href='' />
             </li>
             <li className=''>
-              <PropertyCard />
+              <PropertyCard href='' />
             </li>
             <li className=''>
-              <PropertyCard />
+              <PropertyCard href='' />
             </li>
           </ul>
           <Button href=''>アイテムを追加</Button>

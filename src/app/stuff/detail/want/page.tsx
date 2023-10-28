@@ -2,7 +2,7 @@ import { urbanist } from '@/app/fonts'
 import Breadcrumb from '@/components/Breadcrumb'
 import Button from '@/components/Button'
 import Label from '@/components/Label'
-import PropertyCard from '@/components/stuff/PropertyCard'
+import WantCard from '@/components/stuff/WantCard'
 import Link from 'next/link'
 import React from 'react'
 
@@ -61,16 +61,16 @@ export default function StuffDetailProperty() {
           </div>
           <ul className='grid grid-cols-2 gap-[.8rem] mb-6'>
             <li className=''>
-              <PropertyCard />
+              <WantCard />
             </li>
             <li className=''>
-              <PropertyCard />
+              <WantCard />
             </li>
             <li className=''>
-              <PropertyCard />
+              <WantCard />
             </li>
             <li className=''>
-              <PropertyCard />
+              <WantCard />
             </li>
           </ul>
           <Button href=''>アイテムを追加</Button>
