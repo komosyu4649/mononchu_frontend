@@ -65,30 +65,42 @@ export default function StuffDetailProperty() {
     <>
       {isEditModalOpen && (
         <Modal onClose={() => setIsEditModalOpen(false)}>
-          <form action='' className='p-8 bg-white rounded-xl'>
+          <form action='' className=''>
             <div className='flex flex-col gap-8 mb-12'>
-              <Input
-                id='cat-name'
-                label='カテゴリー名'
-                placeholder='カテゴリー名を入力してください'
-              />
-              <Input
-                id='cat-limit'
-                label='アイテム上限数'
-                placeholder='アイテム上限数を入力してください'
-              />
+              <Input id='item-name' label='アイテム名' placeholder='アイテム名を入力してください' />
+              <label htmlFor='item-thumbnail' className='flex flex-col gap-3'>
+                <span className='text-[1.4rem] font-bold'>サムネイル</span>
+                <div className='flex flex-row gap-4 items-center'>
+                  <div className='h-fit p-3 bg-black rounded-full'>
+                    <Image
+                      src='/assets/img/common/icon_picture.svg'
+                      alt='画像'
+                      width={100}
+                      height={100}
+                      className='w-6 h-6'
+                    />
+                  </div>
+                  <span className='text-defaultText'>画像をアップロード</span>
+                  <input id='item-thumbnail' type='file' className='hidden' />
+                </div>
+              </label>
+              <Input id='item-score' label='スコア' placeholder='80' />
+              <Input id='item-price' label='価格' placeholder='12,000' />
+              <Input id='item-address' label='住所' placeholder='衣装ケース' />
+              <Input id='item-date' label='購入日' placeholder='2019/10/10' />
+              <Input id='item-place' label='購入場所' placeholder='青山のオーラリー' />
             </div>
-            <Button>追加</Button>
+            <Button>変更</Button>
           </form>
         </Modal>
       )}
       {isDeleteModalOpen && (
         <Modal onClose={() => setIsDeleteModalOpen(false)}>
-          <div className='p-8 bg-white rounded-xl'>
+          <div className=''>
             <div className='flex flex-col gap-6'>
               <h2 className='text-[1.8rem] font-bold text-center'>完全に削除しますか？</h2>
               <p className='text-defaultText text-center'>
-                「洋服」カテゴリーを完全に削除しますか？ <br />
+                「auraleeのカーディガン」を完全に削除しますか？ <br />
                 この操作は戻すことができません。
               </p>
             </div>
@@ -113,11 +125,15 @@ export default function StuffDetailProperty() {
           },
           {
             name: '洋服',
-            url: '/detail',
+            url: '/stuff/detail',
+          },
+          {
+            name: '所有している洋服',
+            url: '/stuff/detail/property',
           },
           {
             name: 'auraleeのカーディガン',
-            url: '/detail/property',
+            url: '/stuff/detail/property/detail',
           },
         ]}
       />

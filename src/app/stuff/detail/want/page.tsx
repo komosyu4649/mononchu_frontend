@@ -73,7 +73,9 @@ export default function StuffDetailProperty() {
               <WantCard />
             </li>
           </ul>
-          <Button href=''>アイテムを追加</Button>
+          <Button href='' color='light'>
+            アイテムを追加
+          </Button>
         </div>
       </main>
     </>

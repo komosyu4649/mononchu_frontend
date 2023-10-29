@@ -22,7 +22,7 @@ export default function StuffDetail() {
     <>
       {isEditModalOpen && (
         <Modal onClose={() => setIsEditModalOpen(false)}>
-          <form action='' className='p-8 bg-white rounded-xl'>
+          <form action='' className=''>
             <div className='flex flex-col gap-8 mb-12'>
               <Input
                 id='cat-name'
@@ -41,7 +41,7 @@ export default function StuffDetail() {
       )}
       {isDeleteModalOpen && (
         <Modal onClose={() => setIsDeleteModalOpen(false)}>
-          <div className='p-8 bg-white rounded-xl'>
+          <div className=''>
             <div className='flex flex-col gap-6'>
               <h2 className='text-[1.8rem] font-bold text-center'>完全に削除しますか？</h2>
               <p className='text-defaultText text-center'>
