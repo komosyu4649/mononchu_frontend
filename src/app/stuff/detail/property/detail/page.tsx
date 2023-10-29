@@ -187,13 +187,13 @@ export default function StuffDetailProperty() {
                   htmlFor='dropzone-file'
                   className='flex flex-col items-center justify-center'
                 >
-                  <div className='p-2 bg-black rounded-full'>
+                  <div className='h-fit p-3 bg-black rounded-full'>
                     <Image
                       src='/assets/img/common/icon_picture.svg'
                       alt='画像'
                       width={100}
                       height={100}
-                      className='w-5 h-5'
+                      className='w-6 h-6'
                     />
                   </div>
                   <input id='dropzone-file' type='file' className='hidden' />
