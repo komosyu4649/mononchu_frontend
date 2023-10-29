@@ -77,20 +77,59 @@ export default function StuffDetailProperty() {
     <>
       {isEditModalOpen && (
         <Modal onClose={() => setIsEditModalOpen(false)}>
-          <form action='' className='p-8 bg-white rounded-xl'>
+          <form action='' className=''>
             <div className='flex flex-col gap-8 mb-12'>
+              <Input id='item-name' label='アイテム名' placeholder='アイテム名を入力してください' />
+              <label htmlFor='item-thumbnail' className='flex flex-col gap-3'>
+                <span className='text-[1.4rem] font-bold'>サムネイル</span>
+                <div className='flex flex-row gap-4 items-center'>
+                  <div className='h-fit p-3 bg-black rounded-full'>
+                    <Image
+                      src='/assets/img/common/icon_picture.svg'
+                      alt='画像'
+                      width={100}
+                      height={100}
+                      className='w-6 h-6'
+                    />
+                  </div>
+                  <span className='text-defaultText'>画像をアップロード</span>
+                  <input id='item-thumbnail' type='file' className='hidden' />
+                </div>
+              </label>
+              <Input id='item-score' label='スコア' placeholder='80' />
+              <Input id='item-price' label='価格' placeholder='12,000' />
+
               <Input
-                id='cat-name'
-                label='カテゴリー名'
-                placeholder='カテゴリー名を入力してください'
+                id='item-brand'
+                label='ブランド'
+                placeholder='アイテムのブランドを入力してください'
               />
-              <Input
-                id='cat-limit'
-                label='アイテム上限数'
-                placeholder='アイテム上限数を入力してください'
-              />
+              <Input id='item-url' label='URL' placeholder='アイテムのURLを入力してください' />
+              <div className=''>
+                <span className='text-[1.4rem] font-bold'>購入条件</span>
+                <div className='flex flex-col gap-4 mt-4 p-6 border border-line bg-gray rounded-md'>
+                  <Input
+                    id='item-conditions-asset'
+                    label='資産額(いくらになったら？)'
+                    placeholder='目標資産額を入力してください'
+                    size='sm'
+                  />
+                  <Input
+                    id='item-conditions-period'
+                    label='期間(いつ？)'
+                    placeholder='目標購入時期を入力してください'
+                    size='sm'
+                  />
+                  <Input
+                    id='item-conditions-number'
+                    label='所有アイテム数(いくつになったら？)'
+                    placeholder='目標所有アイテム数を入力してください'
+                    size='sm'
+                  />
+                </div>
+              </div>
             </div>
-            <Button>追加</Button>
+            <Button>変更</Button>
           </form>
         </Modal>
       )}
@@ -203,9 +242,12 @@ export default function StuffDetailProperty() {
             <p className='text-[1.2rem] font-bold '>
               42,000円を全世界株の平均5%で運用してみると...
             </p>
-            <div className='grid grid-cols-3 mt-3'>
+            <div className='flex flex-row gap-4 mt-3'>
               {assetCalculationList.map((item, index) => (
-                <span key={item.year} className='text-[1.2rem]'>
+                <span
+                  key={item.year}
+                  className='pr-4 text-[1.2rem] text-center border-r border-line last:p-0 last:border-none'
+                >
                   {item.year} : {item.amount}
                 </span>
               ))}
