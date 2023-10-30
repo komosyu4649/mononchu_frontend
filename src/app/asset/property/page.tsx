@@ -6,7 +6,7 @@ import React from 'react'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Pie } from 'react-chartjs-2'
 import ChartPie from '@/components/asset/ChartPie'
-import { urbanist } from '../fonts'
+import { urbanist } from '@/app/fonts'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
@@ -49,16 +49,22 @@ const page = () => {
             name: '資産',
             url: '/asset',
           },
+          {
+            name: '欲しいモノ',
+            url: '/asset/want',
+          },
         ]}
       />
       <main className='w-defaultWidth m-auto mt-16'>
-        <h1 className='text-defaultTitle text-center mb-10'>すべてのモノ</h1>
+        <h1 className='text-defaultTitle text-center mb-10'>所有しているモノ</h1>
         <p className='text-defaultText text-center'>
-          今欲しいモノと所有しているものの総額。
+          今所有しているモノの総額。
           <br /> 好きなものにお金を使えているか確認しよう。
         </p>
         <div className='flex flex-row gap-4 mt-8 mb-10'>
-          <Button href='/asset/property'>所有しているモノ</Button>
+          <Button href='/asset' color='darkRev'>
+            すべてのモノ
+          </Button>
           <Button href='/asset/want' color='light'>
             欲しいモノ
           </Button>
