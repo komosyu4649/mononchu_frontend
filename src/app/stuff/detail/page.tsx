@@ -22,7 +22,7 @@ export default function StuffDetail() {
     <>
       {isEditModalOpen && (
         <Modal onClose={() => setIsEditModalOpen(false)}>
-          <form action='' className='p-8 bg-white rounded-xl'>
+          <form action='' className=''>
             <div className='flex flex-col gap-8 mb-12'>
               <Input
                 id='cat-name'
@@ -41,7 +41,7 @@ export default function StuffDetail() {
       )}
       {isDeleteModalOpen && (
         <Modal onClose={() => setIsDeleteModalOpen(false)}>
-          <div className='p-8 bg-white rounded-xl'>
+          <div className=''>
             <div className='flex flex-col gap-6'>
               <h2 className='text-[1.8rem] font-bold text-center'>完全に削除しますか？</h2>
               <p className='text-defaultText text-center'>
@@ -76,16 +76,14 @@ export default function StuffDetail() {
       />
       <main className='w-defaultWidth m-auto mt-16'>
         <div className='grid grid-cols-[1fr_auto] items-end gap-12 pb-10 border-b border-line'>
-          <div className='flex flex-col gap-4'>
+          <div className='flex flex-col gap-6'>
             <span
               className={`w-fit px-4 py-2 text-[1.2rem] font-bold bg-gray rounded-sm ${urbanist.className}`}
             >
               No.1
             </span>
             <h1 className='flex flex-row gap-4 items-center'>
-              <span className='p-3 text-[2.8em] border border-line rounded-lg leading-none'>
-                &#128084;
-              </span>
+              <span className='text-[3em] leading-none'>&#128084;</span>
               <span className='text-[2rem] font-bold'>洋服</span>
             </h1>
           </div>
@@ -118,16 +116,16 @@ export default function StuffDetail() {
           </div>
           <ul className='grid grid-cols-2 gap-[.8rem] mb-6'>
             <li className=''>
-              <PropertyCard />
+              <PropertyCard href='/stuff/detail/detail' />
             </li>
             <li className=''>
-              <PropertyCard />
+              <PropertyCard href='/stuff/detail/detail' />
             </li>
             <li className=''>
-              <PropertyCard />
+              <PropertyCard href='/stuff/detail/detail' />
             </li>
             <li className=''>
-              <PropertyCard />
+              <PropertyCard href='/stuff/detail/detail' />
             </li>
           </ul>
           <Button href='/stuff/detail/property'>所有しているモノ一覧</Button>

@@ -6,7 +6,7 @@ type Props = {
   children: React.ReactNode
   onClick?: () => void
   className?: string
-  color?: 'light' | 'dark' | 'darkRev' | 'danger' | 'dangerRev'
+  color?: 'light' | 'lightRev' | 'dark' | 'darkRev' | 'danger' | 'dangerRev'
   width?: 'full' | 'fit'
   type?: 'button' | 'submit' | 'reset'
   disabled?: boolean
@@ -29,6 +29,8 @@ const Button = ({
     switch (color) {
       case 'light':
         return 'text-dark bg-white border border-line'
+      case 'lightRev':
+        return 'text-dark bg-gray border border-line'
       case 'dark':
         return 'text-white bg-black'
       case 'darkRev':

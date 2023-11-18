@@ -2,7 +2,7 @@ import { urbanist } from '@/app/fonts'
 import Breadcrumb from '@/components/Breadcrumb'
 import Button from '@/components/Button'
 import Label from '@/components/Label'
-import PropertyCard from '@/components/stuff/PropertyCard'
+import WantCard from '@/components/stuff/WantCard'
 import Link from 'next/link'
 import React from 'react'
 
@@ -31,16 +31,14 @@ export default function StuffDetailProperty() {
       />
       <main className='w-defaultWidth m-auto mt-16'>
         <div className='grid grid-cols-[1fr_auto] items-end gap-12 pb-10 border-b border-line'>
-          <div className='flex flex-col gap-4'>
+          <div className='flex flex-col gap-6'>
             <span
               className={`w-fit px-4 py-2 text-[1.2rem] font-bold bg-gray rounded-sm ${urbanist.className}`}
             >
               No.1
             </span>
             <h1 className='flex flex-row gap-4 items-center'>
-              <span className='p-3 text-[2.8em] border border-line rounded-lg leading-none'>
-                &#128084;
-              </span>
+              <span className='text-[3em] leading-none'>&#128084;</span>
               <span className='text-[2rem] font-bold'>洋服</span>
             </h1>
           </div>
@@ -63,19 +61,21 @@ export default function StuffDetailProperty() {
           </div>
           <ul className='grid grid-cols-2 gap-[.8rem] mb-6'>
             <li className=''>
-              <PropertyCard />
+              <WantCard />
             </li>
             <li className=''>
-              <PropertyCard />
+              <WantCard />
             </li>
             <li className=''>
-              <PropertyCard />
+              <WantCard />
             </li>
             <li className=''>
-              <PropertyCard />
+              <WantCard />
             </li>
           </ul>
-          <Button href=''>アイテムを追加</Button>
+          <Button href='' color='light'>
+            アイテムを追加
+          </Button>
         </div>
       </main>
     </>

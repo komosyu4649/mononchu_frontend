@@ -9,7 +9,7 @@ type Props = {
 }
 
 const Modal = (props: Props) => {
-  console.log(props)
+  // console.log(props)
   return (
     <div className='fixed top-0 left-0 flex justify-center items-center w-full h-full z-50'>
       <button
@@ -18,8 +18,10 @@ const Modal = (props: Props) => {
         }}
         className='fixed top-0 left-0 w-full h-full bg-black opacity-50'
       ></button>
-      <div className='relative w-defaultWidth h-fit'>
-        {props.children}
+      <div className='relative w-defaultWidth'>
+        <div className='h-fit max-h-[90vh] p-8 bg-white rounded-xl overflow-y-scroll overflow-x-hidden'>
+          {props.children}
+        </div>
         <button
           className='absolute -top-4 -right-4 w-fit p-4 rounded-full bg-black'
           onClick={() => {

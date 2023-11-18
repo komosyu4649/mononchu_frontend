@@ -24,8 +24,8 @@ export default function page() {
       />
       <main className='w-defaultWidth m-auto mt-16'>
         <h1 className='text-defaultTitle text-center mb-10'>新規カテゴリー追加</h1>
-        <form action='' className='p-8 border border-line rounded-xl'>
-          <div className='flex flex-col gap-8 mb-12'>
+        <form action='' className=''>
+          <div className='flex flex-col gap-8 mb-10 p-8 border border-line rounded-xl'>
             <Input
               id='cat-name'
               label='カテゴリー名'
