@@ -3,10 +3,23 @@ import Breadcrumb from '@/components/Breadcrumb'
 import Button from '@/components/Button'
 import Label from '@/components/Label'
 import PropertyCard from '@/components/stuff/PropertyCard'
+import axios from 'axios'
 import Link from 'next/link'
 import React from 'react'
 
-export default function StuffDetailProperty() {
+type Props = {
+  params: {
+    category: string
+  }
+  searchParams: {}
+}
+
+export default async function StuffDetailProperty(props: Props) {
+  // console.log(props)
+  const { params, searchParams } = props
+  const { category } = params
+  const properties = await axios.get(`${process.env.NEST_API}/stuff/property/${category}`)
+
   return (
     <>
       <Breadcrumb
@@ -60,20 +73,23 @@ export default function StuffDetailProperty() {
             </div>
           </div>
           <ul className='grid grid-cols-2 gap-[.8rem] mb-6'>
-            <li className=''>
-              <PropertyCard href='' />
-            </li>
-            <li className=''>
-              <PropertyCard href='' />
-            </li>
-            <li className=''>
-              <PropertyCard href='' />
-            </li>
-            <li className=''>
-              <PropertyCard href='' />
-            </li>
+            {properties.data.map((property: any) => {
+              return (
+                <li className='' key={property.id}>
+                  <PropertyCard
+                    href={`/stuff/${category}/property/${property.id}`}
+                    property={property}
+                  />
+                </li>
+              )
+            })}
           </ul>
-          <Button href=''>アイテムを追加</Button>
+          <div className='flex flex-col gap-4'>
+            <Button href={`/stuff/${category}/property/new`}>アイテムを追加</Button>
+            <Button href={`/stuff/${category}`} color='light'>
+              一覧に戻る
+            </Button>
+          </div>
         </div>
       </main>
     </>

@@ -138,7 +138,10 @@ export default async function StuffDetail(props: Props) {
           <ul className='grid grid-cols-2 gap-[.8rem] mb-6'>
             {properties.data.map((property: StuffProperty) => (
               <li key={property.id} className=''>
-                <PropertyCard href={`/stuff/${category}/${property.id}`} property={property} />
+                <PropertyCard
+                  href={`/stuff/${category}/property/${property.id}`}
+                  property={property}
+                />
               </li>
             ))}
           </ul>
@@ -160,7 +163,7 @@ export default async function StuffDetail(props: Props) {
           <ul className='grid grid-cols-2 gap-x-[.8rem] gap-y-6 mb-6'>
             {wants.data.map((want: StuffWant) => (
               <li key={want.id} className=''>
-                <WantCard href={`/stuff/${category}/${want.id}`} want={want} />
+                <WantCard href={`/stuff/${category}/want/${want.id}`} want={want} />
               </li>
             ))}
           </ul>
