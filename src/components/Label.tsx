@@ -21,9 +21,9 @@ const sizeSwitch = (size: 'sm' | 'md' | 'lg') => {
 const Label = ({ children, color = 'bg-gray text-black', size = 'sm' }: Props) => {
   return (
     <span
-      className={`px-4 py-[.15rem] ${color} ${sizeSwitch(size)} font-bold rounded-full ${
-        urbanist.className
-      }`}
+      className={`min-h-[1rem] px-4 py-[.15rem] ${color} ${sizeSwitch(
+        size,
+      )} font-bold rounded-full ${urbanist.className}`}
     >
       {children}
     </span>
