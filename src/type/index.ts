@@ -8,3 +8,24 @@ export type StuffCategory = {
   wantRegistrationNumber: number
   wantTotalAmount: number
 }
+
+export type StuffProperty = {
+  id: number
+  name: string
+  thumbnail: string
+  score: number
+  price: number
+  address: string
+  purchaseDate: string
+  purchasePlace: string
+}
+
+export type StuffWant = {
+  id: number
+  name: string
+  thumbnail: string
+  score: number
+  price: number
+  brand: string
+  url: string
+}

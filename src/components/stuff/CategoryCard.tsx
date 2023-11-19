@@ -12,7 +12,7 @@ const CategoryCard = (props: Props) => {
   const { category } = props
   return (
     <Link
-      href='/stuff/detail'
+      href={`/stuff/${category.id}`}
       className='flex flex-col items-center gap-4 p-4 border border-line rounded-lg overflow-hidden'
     >
       <span

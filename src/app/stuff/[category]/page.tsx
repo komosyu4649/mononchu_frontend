@@ -1,4 +1,4 @@
-'use client'
+// 'use client'
 
 import { urbanist } from '@/app/fonts'
 import Breadcrumb from '@/components/Breadcrumb'
@@ -8,19 +8,37 @@ import Label from '@/components/Label'
 import Modal from '@/components/Modal'
 import PropertyCard from '@/components/stuff/PropertyCard'
 import WantCard from '@/components/stuff/WantCard'
+import { StuffProperty, StuffWant } from '@/type'
+import axios from 'axios'
 import Link from 'next/link'
-import React, { useState } from 'react'
+// import React, { useState } from 'react'
 
-export default function StuffDetail() {
+type Props = {
+  params: {
+    category: string
+  }
+  searchParams: {}
+}
+
+export default async function StuffDetail(props: Props) {
+  const { params, searchParams } = props
+  const { category } = params
+  const categoryData = await axios.get(`${process.env.NEST_API}/stuff/category/${category}`)
+  // console.log(categoryData.data)
+  // console.log(category)
+  const properties = await axios.get(`${process.env.NEST_API}/stuff/property/${category}?limit=4`)
+  const wants = await axios.get(`${process.env.NEST_API}/stuff/want/${category}?limit=4`)
+  // console.log(wants.data)
+  // console.log(properties.data)
   // 編集モーダル
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
-  const openEditModal = () => setIsEditModalOpen(true)
+  // const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+  // const openEditModal = () => setIsEditModalOpen(true)
   // 削除モーダル
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
-  const openDeleteModal = () => setIsDeleteModalOpen(true)
+  // const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
+  // const openDeleteModal = () => setIsDeleteModalOpen(true)
   return (
     <>
-      {isEditModalOpen && (
+      {/* {isEditModalOpen && (
         <Modal onClose={() => setIsEditModalOpen(false)}>
           <form action='' className=''>
             <div className='flex flex-col gap-8 mb-12'>
@@ -57,7 +75,7 @@ export default function StuffDetail() {
             </div>
           </div>
         </Modal>
-      )}
+      )} */}
       <Breadcrumb
         crumbs={[
           {
@@ -80,11 +98,14 @@ export default function StuffDetail() {
             <span
               className={`w-fit px-4 py-2 text-[1.2rem] font-bold bg-gray rounded-sm ${urbanist.className}`}
             >
-              No.1
+              No.{categoryData.data.rank}
             </span>
             <h1 className='flex flex-row gap-4 items-center'>
-              <span className='text-[3em] leading-none'>&#128084;</span>
-              <span className='text-[2rem] font-bold'>洋服</span>
+              <span
+                className='text-[3em] leading-none'
+                dangerouslySetInnerHTML={{ __html: categoryData.data.icon }}
+              />
+              <span className='text-[2rem] font-bold'>{categoryData.data.name}</span>
             </h1>
           </div>
           <div className='flex flex-col gap-4 items-end'>
@@ -93,14 +114,14 @@ export default function StuffDetail() {
               <span className='text-[1rem] font-bold'>/</span>
               <Label>10</Label>
             </div> */}
-            <div className='flex flex-row gap-4'>
+            {/* <div className='flex flex-row gap-4'>
               <button className='inline text-[1.2rem] underline' onClick={openEditModal}>
                 編集
               </button>
               <button className='inline text-[1.2rem] underline' onClick={openDeleteModal}>
                 削除
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className='mt-10'>
@@ -109,26 +130,19 @@ export default function StuffDetail() {
               所有しているモノ
             </h2>
             <div className='flex flex-row items-center gap-2'>
-              <Label size='md'>4</Label>
+              <Label size='md'>{categoryData.data.propertyRegistrationNumber}</Label>
               <span className='text-[1.2rem] font-bold'>/</span>
-              <Label size='md'>10</Label>
+              <Label size='md'>{categoryData.data.propertyLimitedNumber}</Label>
             </div>
           </div>
           <ul className='grid grid-cols-2 gap-[.8rem] mb-6'>
-            <li className=''>
-              <PropertyCard href='/stuff/detail/detail' />
-            </li>
-            <li className=''>
-              <PropertyCard href='/stuff/detail/detail' />
-            </li>
-            <li className=''>
-              <PropertyCard href='/stuff/detail/detail' />
-            </li>
-            <li className=''>
-              <PropertyCard href='/stuff/detail/detail' />
-            </li>
+            {properties.data.map((property: StuffProperty) => (
+              <li key={property.id} className=''>
+                <PropertyCard href={`/stuff/${category}/${property.id}`} property={property} />
+              </li>
+            ))}
           </ul>
-          <Button href='/stuff/detail/property'>所有しているモノ一覧</Button>
+          <Button href={`/stuff/${category}/property`}>所有しているモノ一覧</Button>
         </div>
         <div className='mt-10'>
           <div className='flex flex-row justify-between items-center mb-6'>
@@ -136,26 +150,21 @@ export default function StuffDetail() {
               欲しいモノ
             </h2>
             <div className='flex flex-row items-center gap-2'>
-              <Label size='md'>14</Label>
+              <Label size='md'>{categoryData.data.wantRegistrationNumber}</Label>
               <span className={`text-[1.2rem] font-bold ${urbanist.className}`}>=</span>
-              <span className={`text-[1.2rem] font-bold ${urbanist.className}`}>¥121,000</span>
+              <span className={`text-[1.2rem] font-bold ${urbanist.className}`}>
+                ¥{categoryData.data.wantTotalAmount}
+              </span>
             </div>
           </div>
           <ul className='grid grid-cols-2 gap-x-[.8rem] gap-y-6 mb-6'>
-            <li className=''>
-              <WantCard />
-            </li>
-            <li className=''>
-              <WantCard />
-            </li>
-            <li className=''>
-              <WantCard />
-            </li>
-            <li className=''>
-              <WantCard />
-            </li>
+            {wants.data.map((want: StuffWant) => (
+              <li key={want.id} className=''>
+                <WantCard href={`/stuff/${category}/${want.id}`} want={want} />
+              </li>
+            ))}
           </ul>
-          <Button color='light' href='/stuff/detail/want'>
+          <Button color='light' href={`/stuff/${category}/want`}>
             欲しいモノ一覧
           </Button>
         </div>
