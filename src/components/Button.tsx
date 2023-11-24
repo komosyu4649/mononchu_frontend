@@ -2,7 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 
 type Props = {
-  href?: string
+  href?: string | { pathname: string; query?: Record<string, string | string[]> }
   children: React.ReactNode
   onClick?: () => void
   className?: string

@@ -6,6 +6,7 @@ import Button from '@/components/Button'
 import Input from '@/components/Input'
 import Label from '@/components/Label'
 import Modal from '@/components/Modal'
+import CategoryHeader from '@/components/stuff/CategoryHeader'
 import PropertyCard from '@/components/stuff/PropertyCard'
 import WantCard from '@/components/stuff/WantCard'
 import { StuffProperty, StuffWant } from '@/type'
@@ -93,7 +94,8 @@ export default async function StuffDetail(props: Props) {
         ]}
       />
       <main className='w-defaultWidth m-auto mt-16'>
-        <div className='grid grid-cols-[1fr_auto] items-end gap-12 pb-10 border-b border-line'>
+        <CategoryHeader type='parent' category={category} />
+        {/* <div className='grid grid-cols-[1fr_auto] items-end gap-12 pb-10 border-b border-line'>
           <div className='flex flex-col gap-6'>
             <span
               className={`w-fit px-4 py-2 text-[1.2rem] font-bold bg-gray rounded-sm ${urbanist.className}`}
@@ -109,21 +111,16 @@ export default async function StuffDetail(props: Props) {
             </h1>
           </div>
           <div className='flex flex-col gap-4 items-end'>
-            {/* <div className='flex flex-row items-center gap-2'>
-              <Label>4</Label>
-              <span className='text-[1rem] font-bold'>/</span>
-              <Label>10</Label>
-            </div> */}
-            {/* <div className='flex flex-row gap-4'>
+            <div className='flex flex-row gap-4'>
               <button className='inline text-[1.2rem] underline' onClick={openEditModal}>
                 編集
               </button>
               <button className='inline text-[1.2rem] underline' onClick={openDeleteModal}>
                 削除
               </button>
-            </div> */}
+            </div>
           </div>
-        </div>
+        </div> */}
         <div className='mt-10'>
           <div className='flex flex-row justify-between items-center mb-6'>
             <h2 className='inline-block px-6 py-2 text-[1.2rem] text-white font-bold bg-black rounded-full'>
