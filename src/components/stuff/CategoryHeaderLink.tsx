@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import React, { useState } from 'react'
 
 type Props = {
@@ -9,6 +10,8 @@ type Props = {
 
 const CategoryHeaderLink = (props: Props) => {
   const { type } = props
+  const router = usePathname()
+  const parentUrl = router.split('/').slice(0, -1).join('/')
   return (
     <div>
       {type === 'parent' ? (
@@ -22,7 +25,7 @@ const CategoryHeaderLink = (props: Props) => {
         </div>
       ) : (
         <div className='flex flex-col gap-4 items-end'>
-          <Link href='/stuff/detail' className='inline text-[1.2rem] underline'>
+          <Link href={parentUrl} className='inline text-[1.2rem] underline'>
             戻る
           </Link>
         </div>
