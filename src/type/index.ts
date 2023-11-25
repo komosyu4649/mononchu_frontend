@@ -29,3 +29,10 @@ export type StuffWant = {
   brand: string
   url: string
 }
+
+export type Memo = {
+  id: number
+  fiveW: string[]
+  image: string
+  memo: string
+}

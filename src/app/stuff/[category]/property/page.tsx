@@ -4,6 +4,7 @@ import Button from '@/components/Button'
 import Label from '@/components/Label'
 import CategoryHeader from '@/components/stuff/CategoryHeader'
 import PropertyCard from '@/components/stuff/PropertyCard'
+import { StuffProperty } from '@/type'
 import axios from 'axios'
 import Link from 'next/link'
 import React from 'react'
@@ -57,7 +58,7 @@ export default async function StuffDetailProperty(props: Props) {
             </div>
           </div>
           <ul className='grid grid-cols-2 gap-[.8rem] mb-6'>
-            {properties.data.map((property: any) => {
+            {properties.data.map((property: StuffProperty) => {
               return (
                 <li className='' key={property.id}>
                   <PropertyCard

@@ -3,6 +3,7 @@ import Button from '@/components/Button'
 import CategoryCard from '@/components/stuff/CategoryCard'
 import React from 'react'
 import axios from 'axios'
+import { StuffCategory } from '@/type'
 
 export default async function Stuff() {
   const categories = await axios.get(`${process.env.NEST_API}/stuff/category`)
@@ -24,7 +25,7 @@ export default async function Stuff() {
         <h1 className='text-defaultTitle text-center mb-10'>モノ</h1>
         <div className=''>
           <ul className='grid grid-cols-2 gap-[.8rem] mb-8'>
-            {categories.data.map((category: any) => {
+            {categories.data.map((category: StuffCategory) => {
               return (
                 <li className='' key={category.id}>
                   <CategoryCard category={category} />
