@@ -18,9 +18,20 @@ const sizeSwitch = (size: 'sm' | 'md' | 'lg') => {
   }
 }
 
+const gapSwitch = (size: 'sm' | 'md' | 'lg') => {
+  switch (size) {
+    case 'sm':
+      return 'gap-2'
+    case 'md':
+      return 'gap-3'
+    case 'lg':
+      return 'gap-4'
+  }
+}
+
 const Input = ({ id, label, placeholder, size = 'md' }: Props) => {
   return (
-    <label htmlFor={id} className='flex flex-col gap-3'>
+    <label htmlFor={id} className={`flex flex-col ${gapSwitch(size)}`}>
       <span className={`${sizeSwitch(size)} font-bold`}>{label}</span>
       <input
         id={id}

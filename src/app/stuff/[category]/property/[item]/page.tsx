@@ -9,7 +9,7 @@ import { Memo, StuffProperty } from '@/type'
 import axios from 'axios'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React from 'react'
 
 type Props = {
   params: {
@@ -75,7 +75,7 @@ export default async function StuffDetailProperty(props: Props) {
   ]
   return (
     <>
-      <ItemModals />
+      <ItemModals type='property' />
       <Breadcrumb
         crumbs={[
           {
@@ -101,11 +101,23 @@ export default async function StuffDetailProperty(props: Props) {
         ]}
       />
       <main className='w-defaultWidth m-auto mt-16'>
-        <ItemInformation
+        <h1
+          className={`flex justify-center w-fit mb-4 m-auto px-6 py-2 text-[1.2rem] text-white bg-black font-bold  rounded-full`}
+        >
+          所有しているモノ
+        </h1>
+        <div className='border-b border-line mb-8 pb-8'>
+          <ItemInformation
+            type='property'
+            itemDetailData={itemDetailData}
+            itemInfoList={itemInfoList}
+          />
+        </div>
+        {/* <ItemInformation
           type='property'
           itemDetailData={itemDetailData}
           itemInfoList={itemInfoList}
-        />
+        /> */}
         <div className=''>
           <form action='' className=''>
             <div className='p-6 bg-gray border border-line rounded-xl'>

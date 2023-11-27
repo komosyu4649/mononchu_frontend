@@ -1,43 +1,58 @@
-'use client'
-
 import { urbanist } from '@/app/fonts'
 import Breadcrumb from '@/components/Breadcrumb'
 import Button from '@/components/Button'
 import Checkbox from '@/components/Checkbox'
 import Input from '@/components/Input'
 import Modal from '@/components/Modal'
+import ItemInformation from '@/components/stuff/ItemInformation'
+import ItemModals from '@/components/stuff/ItemModals'
+import { StuffWant } from '@/type'
+import axios from 'axios'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
 
-export default function StuffDetailProperty() {
-  // 編集モーダル
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
-  const openEditModal = () => setIsEditModalOpen(true)
-  // 削除モーダル
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
-  const openDeleteModal = () => setIsDeleteModalOpen(true)
-  // 所有しているモノへの更新モーダル
-  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false)
-  const openUpdateModal = () => setIsUpdateModalOpen(true)
+type Props = {
+  params: {
+    category: string
+    item: string
+  }
+  searchParams: {}
+}
 
-  const stuffInfoList = [
+export default async function StuffDetailWant(props: Props) {
+  const { params } = props
+  const { category, item } = params
+  const itemDetail = await axios.get(`${process.env.NEST_API}/stuff/want/${category}/${item}`)
+  const itemDetailData: StuffWant = itemDetail.data
+  // console.log(itemDetailData)
+  // // 編集モーダル
+  // const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+  // const openEditModal = () => setIsEditModalOpen(true)
+  // // 削除モーダル
+  // const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
+  // const openDeleteModal = () => setIsDeleteModalOpen(true)
+  // // 所有しているモノへの更新モーダル
+  // const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false)
+  // const openUpdateModal = () => setIsUpdateModalOpen(true)
+
+  const itemInfoList = [
     {
       icon: '/assets/img/common/icon_note.svg',
-      text: '72点',
+      text: `${itemDetailData.score}点`,
     },
     {
       icon: '/assets/img/common/icon_price.svg',
-      text: '¥42,000',
+      text: `${itemDetailData.price}円`,
     },
     {
       icon: '/assets/img/common/icon_brand.svg',
-      text: 'comoli',
+      text: itemDetailData.brand,
     },
     {
       icon: '/assets/img/common/icon_url.svg',
       text: '購入リンク',
-      href: 'https://www.comoli.jp/shop/g/gCML-21-01-001/',
+      href: itemDetailData.url,
     },
   ]
   const assetCalculationList = [
@@ -79,7 +94,7 @@ export default function StuffDetailProperty() {
   ]
   return (
     <>
-      {isEditModalOpen && (
+      {/* {isEditModalOpen && (
         <Modal onClose={() => setIsEditModalOpen(false)}>
           <form action='' className=''>
             <div className='flex flex-col gap-8 mb-12'>
@@ -136,8 +151,8 @@ export default function StuffDetailProperty() {
             <Button>変更</Button>
           </form>
         </Modal>
-      )}
-      {isDeleteModalOpen && (
+      )} */}
+      {/* {isDeleteModalOpen && (
         <Modal onClose={() => setIsDeleteModalOpen(false)}>
           <div className=''>
             <div className='flex flex-col gap-6'>
@@ -155,8 +170,8 @@ export default function StuffDetailProperty() {
             </div>
           </div>
         </Modal>
-      )}
-      {isUpdateModalOpen && (
+      )} */}
+      {/* {isUpdateModalOpen && (
         <Modal onClose={() => setIsUpdateModalOpen(false)}>
           <div className=''>
             <div className='flex flex-col gap-8 mb-10'>
@@ -186,7 +201,8 @@ export default function StuffDetailProperty() {
             <Button>所有に移動</Button>
           </div>
         </Modal>
-      )}
+      )} */}
+      <ItemModals type='want' />
       <Breadcrumb
         crumbs={[
           {
@@ -216,61 +232,18 @@ export default function StuffDetailProperty() {
           欲しいモノ
         </h1>
         <div className='border-b border-line mb-8 pb-8'>
-          <h2 className='mb-4 text-defaultTitle text-center'>comoliのジーパン</h2>
-          <div className='grid grid-cols-2 gap-6 mb-6'>
-            <Image
-              src='/assets/img/stuff/item.jpg'
-              alt='auraleeのカーディガン'
-              width={300}
-              height={300}
-              className='rounded-md'
-            />
-            <div className=''>
-              <ul className='mb-4'>
-                {stuffInfoList.map((item, index) => (
-                  <li
-                    key={item.text}
-                    className='grid grid-cols-[auto_1fr] items-center gap-4 px-2 py-4 border-b border-line'
-                  >
-                    <Image
-                      src={item.icon}
-                      alt={item.text}
-                      width={300}
-                      height={300}
-                      className='w-6'
-                    />
-                    {item.href ? (
-                      <a
-                        href={item.href}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className='text-[1.2rem] underline'
-                      >
-                        {item.text}
-                      </a>
-                    ) : (
-                      <span className='text-[1.2rem]'>{item.text}</span>
-                    )}
-                  </li>
-                ))}
-              </ul>
-              <div className='flex flex-row justify-end gap-4 mt-6'>
-                <button className='inline text-[1.2rem] underline' onClick={openEditModal}>
-                  編集
-                </button>
-                <button className='inline text-[1.2rem] underline' onClick={openDeleteModal}>
-                  削除
-                </button>
-              </div>
-            </div>
-          </div>
-          <Button onClick={openUpdateModal}>購入済みにする</Button>
+          <ItemInformation
+            type='want'
+            itemDetailData={itemDetailData}
+            itemInfoList={itemInfoList}
+          />
+          {/* <Button onClick={openUpdateModal}>購入済みにする</Button> */}
           <div className='grid grid-cols-[auto_1fr] items-center mt-8 px-8 py-6 gap-8 border border-line rounded-md'>
             <span className='text-[1.2rem] font-bold'>購入条件</span>
             <div className='flex flex-col gap-3 pl-8 border-l border-line'>
-              <Checkbox id='conditions-1' text='資産額1,000万円いったら' onChange={() => {}} />
+              {/* <Checkbox id='conditions-1' text='資産額1,000万円いったら' onChange={() => {}} />
               <Checkbox id='conditions-2' text='2024年2月まで欲しかったら' onChange={() => {}} />
-              <Checkbox id='conditions-3' text='洋服が10点以下だったら' onChange={() => {}} />
+              <Checkbox id='conditions-3' text='洋服が10点以下だったら' onChange={() => {}} /> */}
             </div>
           </div>
           <div className='mt-6 px-8 py-6 gap-8 border border-line rounded-md'>
@@ -298,7 +271,7 @@ export default function StuffDetailProperty() {
                     <li key={item.param} className=''>
                       <Link
                         href={{
-                          pathname: '/stuff/detail/property/detail',
+                          pathname: '/stuff/detail/want/detail',
                           query: { five: item.param },
                         }}
                         className={`inline-block px-4 py-[.15rem] text-[1.2rem] border border-line rounded-full bg-white ${urbanist.className}`}
