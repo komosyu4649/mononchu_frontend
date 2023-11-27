@@ -28,6 +28,12 @@ export type StuffWant = {
   price: number
   brand: string
   url: string
+  conditions: {
+    id: number
+    asset: string
+    period: string
+    property: number
+  }
 }
 
 export type Memo = {

@@ -6,7 +6,7 @@ import Input from '@/components/Input'
 import Modal from '@/components/Modal'
 import ItemInformation from '@/components/stuff/ItemInformation'
 import ItemModals from '@/components/stuff/ItemModals'
-import { StuffWant } from '@/type'
+import { StuffCategory, StuffWant } from '@/type'
 import axios from 'axios'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -23,6 +23,9 @@ type Props = {
 export default async function StuffDetailWant(props: Props) {
   const { params } = props
   const { category, item } = params
+  const categoryDetail = await axios.get(`${process.env.NEST_API}/stuff/category/${category}`)
+  // console.log(categoryDetail.data)
+  const categoryDetailData: StuffCategory = categoryDetail.data
   const itemDetail = await axios.get(`${process.env.NEST_API}/stuff/want/${category}/${item}`)
   const itemDetailData: StuffWant = itemDetail.data
   // console.log(itemDetailData)
@@ -202,7 +205,7 @@ export default async function StuffDetailWant(props: Props) {
           </div>
         </Modal>
       )} */}
-      <ItemModals type='want' />
+      <ItemModals type='want' itemDetailData={itemDetailData} />
       <Breadcrumb
         crumbs={[
           {
@@ -241,9 +244,18 @@ export default async function StuffDetailWant(props: Props) {
           <div className='grid grid-cols-[auto_1fr] items-center mt-8 px-8 py-6 gap-8 border border-line rounded-md'>
             <span className='text-[1.2rem] font-bold'>購入条件</span>
             <div className='flex flex-col gap-3 pl-8 border-l border-line'>
-              {/* <Checkbox id='conditions-1' text='資産額1,000万円いったら' onChange={() => {}} />
-              <Checkbox id='conditions-2' text='2024年2月まで欲しかったら' onChange={() => {}} />
-              <Checkbox id='conditions-3' text='洋服が10点以下だったら' onChange={() => {}} /> */}
+              <Checkbox
+                id='conditions-asset'
+                text={`資産額${itemDetailData.conditions.asset}いったら`}
+              />
+              <Checkbox
+                id='conditions-period'
+                text={`${itemDetailData.conditions.period}まで欲しかったら`}
+              />
+              <Checkbox
+                id='conditions-property'
+                text={`${categoryDetailData.name}が${itemDetailData.conditions.property}点以下だったら`}
+              />
             </div>
           </div>
           <div className='mt-6 px-8 py-6 gap-8 border border-line rounded-md'>

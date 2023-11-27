@@ -6,13 +6,15 @@ import Modal from '../Modal'
 import Input from '../Input'
 import Image from 'next/image'
 import Button from '../Button'
+import { StuffProperty, StuffWant } from '@/type'
 
 type Props = {
   type: 'property' | 'want'
+  itemDetailData: StuffProperty | StuffWant
 }
 
 const ItemModals = (props: Props) => {
-  const { type } = props
+  const { type, itemDetailData } = props
   const router = usePathname()
   const searchParams = useSearchParams()
   const crud = searchParams.get('crud')
@@ -123,7 +125,7 @@ const ItemModals = (props: Props) => {
             <div className='flex flex-col gap-6'>
               <h2 className='text-[1.8rem] font-bold text-center'>完全に削除しますか？</h2>
               <p className='text-defaultText text-center'>
-                「auraleeのカーディガン」を完全に削除しますか？ <br />
+                {itemDetailData.name}を完全に削除しますか？ <br />
                 この操作は戻すことができません。
               </p>
             </div>

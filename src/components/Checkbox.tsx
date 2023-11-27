@@ -3,7 +3,7 @@ import React from 'react'
 type Props = {
   id: string
   text: string
-  onChange: () => void
+  onChange?: () => void
 }
 
 const Checkbox = ({ id, text, onChange }: Props) => {

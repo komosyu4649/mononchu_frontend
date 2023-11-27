@@ -75,7 +75,7 @@ export default async function StuffDetailProperty(props: Props) {
   ]
   return (
     <>
-      <ItemModals type='property' />
+      <ItemModals type='property' itemDetailData={itemDetailData} />
       <Breadcrumb
         crumbs={[
           {
