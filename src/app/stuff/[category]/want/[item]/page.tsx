@@ -46,7 +46,7 @@ export default async function StuffDetailWant(props: Props) {
     },
     {
       icon: '/assets/img/common/icon_price.svg',
-      text: `${itemDetailData.price}円`,
+      text: `${itemDetailData.price.toLocaleString()}円`,
     },
     {
       icon: '/assets/img/common/icon_brand.svg',
@@ -58,18 +58,26 @@ export default async function StuffDetailWant(props: Props) {
       href: itemDetailData.url,
     },
   ]
+
+  // itemDetailData.priceを10,20,30年間全世界株の平均6%で運用してみた結果...
+  const calc = (price: number, year: number) => {
+    return Math.round(price * 1.06 ** year)
+  }
+  const assetCalculation10 = calc(itemDetailData.price, 10)
+  const assetCalculation20 = calc(itemDetailData.price, 20)
+  const assetCalculation30 = calc(itemDetailData.price, 30)
   const assetCalculationList = [
     {
       year: '10年後',
-      amount: '¥12,000',
+      amount: `${assetCalculation10.toLocaleString()}円`,
     },
     {
       year: '20年後',
-      amount: '¥22,000',
+      amount: `${assetCalculation20.toLocaleString()}円`,
     },
     {
       year: '30年後',
-      amount: '¥42,000',
+      amount: `${assetCalculation30.toLocaleString()}円`,
     },
   ]
 
@@ -95,6 +103,7 @@ export default async function StuffDetailWant(props: Props) {
       text: 'what',
     },
   ]
+
   return (
     <>
       {/* {isEditModalOpen && (
@@ -240,7 +249,9 @@ export default async function StuffDetailWant(props: Props) {
             itemDetailData={itemDetailData}
             itemInfoList={itemInfoList}
           />
-          {/* <Button onClick={openUpdateModal}>購入済みにする</Button> */}
+          <Button href='?crud=move' className='mt-4'>
+            購入済みにする
+          </Button>
           <div className='grid grid-cols-[auto_1fr] items-center mt-8 px-8 py-6 gap-8 border border-line rounded-md'>
             <span className='text-[1.2rem] font-bold'>購入条件</span>
             <div className='flex flex-col gap-3 pl-8 border-l border-line'>
@@ -260,9 +271,9 @@ export default async function StuffDetailWant(props: Props) {
           </div>
           <div className='mt-6 px-8 py-6 gap-8 border border-line rounded-md'>
             <p className='text-[1.2rem] font-bold '>
-              42,000円を全世界株の平均5%で運用してみると...
+              {itemDetailData.price.toLocaleString()}円を全世界株の平均6%で運用してみると...
             </p>
-            <div className='flex flex-row gap-4 mt-3'>
+            <div className='flex flex-row gap-2 mt-3'>
               {assetCalculationList.map((item, index) => (
                 <span
                   key={item.year}
