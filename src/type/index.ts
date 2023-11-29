@@ -42,3 +42,11 @@ export type Memo = {
   image: string
   memo: string
 }
+
+export type AssetCategory = {
+  id: number
+  name: string
+  price: number
+  registrationNumber: number
+  categoryId: number
+}
