@@ -4,7 +4,7 @@ import React from 'react'
 type Props = {
   href?: string | { pathname: string; query?: Record<string, string | string[]> }
   children: React.ReactNode
-  onClick?: () => void
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
   className?: string
   color?: 'light' | 'lightRev' | 'dark' | 'darkRev' | 'danger' | 'dangerRev'
   width?: 'full' | 'fit'

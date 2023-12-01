@@ -17,7 +17,7 @@ const CategoryHeader = async ({ type, category }: Props) => {
   const categoryData = await axios.get(`${process.env.NEST_API}/stuff/category/${category}`)
   return (
     <>
-      <CategoryModals />
+      <CategoryModals category={category} />
       <div className='grid grid-cols-[1fr_auto] items-end gap-12 pb-10 border-b border-line'>
         <div className='flex flex-col gap-6'>
           <span

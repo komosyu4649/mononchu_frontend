@@ -24,7 +24,7 @@ export default async function StuffDetail(props: Props) {
   const { params, searchParams } = props
   const { category } = params
   const categoryData = await axios.get(`${process.env.NEST_API}/stuff/category/${category}`)
-  console.log(categoryData)
+  // console.log(categoryData)
   const properties = await axios.get(`${process.env.NEST_API}/stuff/property/${category}?limit=4`)
   const wants = await axios.get(`${process.env.NEST_API}/stuff/want/${category}?limit=4`)
 

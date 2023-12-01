@@ -1,14 +1,14 @@
 'use client'
 
 import React from 'react'
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, Chart, ChartData } from 'chart.js'
 import ChartPie from './ChartPie'
 import { urbanist } from '@/app/fonts'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
 type Props = {
-  data: any
+  data: ChartData<'pie'>
   //   options?: Chart.ChartOptions
 }
 

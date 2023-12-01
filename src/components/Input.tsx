@@ -5,6 +5,8 @@ type Props = {
   label: string
   placeholder: string
   size?: 'sm' | 'md' | 'lg'
+  value?: string
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const sizeSwitch = (size: 'sm' | 'md' | 'lg') => {
@@ -29,7 +31,7 @@ const gapSwitch = (size: 'sm' | 'md' | 'lg') => {
   }
 }
 
-const Input = ({ id, label, placeholder, size = 'md' }: Props) => {
+const Input = ({ id, label, placeholder, size = 'md', value, onChange }: Props) => {
   return (
     <label htmlFor={id} className={`flex flex-col ${gapSwitch(size)}`}>
       <span className={`${sizeSwitch(size)} font-bold`}>{label}</span>
@@ -40,6 +42,8 @@ const Input = ({ id, label, placeholder, size = 'md' }: Props) => {
         className={`p-4 ${sizeSwitch(
           size,
         )} font-bold border border-line rounded-md placeholder:text-line`}
+        value={value}
+        onChange={onChange}
       />
     </label>
   )
