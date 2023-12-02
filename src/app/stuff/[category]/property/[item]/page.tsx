@@ -76,7 +76,7 @@ export default async function StuffDetailProperty(props: Props) {
   ]
   return (
     <>
-      <ItemModals type='property' itemDetailData={itemDetailData} />
+      <ItemModals type='property' itemDetailData={itemDetailData} category={category} />
       <Breadcrumb
         crumbs={[
           {
@@ -114,11 +114,6 @@ export default async function StuffDetailProperty(props: Props) {
             itemInfoList={itemInfoList}
           />
         </div>
-        {/* <ItemInformation
-          type='property'
-          itemDetailData={itemDetailData}
-          itemInfoList={itemInfoList}
-        /> */}
         <MemoContainer type='property' category={category} item={item} />
       </main>
     </>

@@ -5,7 +5,7 @@ type Props = {
   label: string
   placeholder: string
   size?: 'sm' | 'md' | 'lg'
-  value?: string
+  value?: string | number
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
