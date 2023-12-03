@@ -10,12 +10,13 @@ import { usePathname, useSearchParams } from 'next/navigation'
 type Props = {
   children: React.ReactNode
   param?: string
+  containerStyle?: string
 }
 
 const Modal = (props: Props) => {
   const router = usePathname()
   const searchParams = useSearchParams()
-  const { param } = props
+  const { param, containerStyle } = props
   const params = new URLSearchParams(searchParams.toString())
   params.delete(param as string)
 
@@ -23,7 +24,7 @@ const Modal = (props: Props) => {
     pathname: router,
     query: Object.fromEntries(params),
   }
-  console.log(closeLink)
+  // console.log(closeLink)
   return (
     <div className='fixed top-0 left-0 flex justify-center items-center w-full h-full z-50'>
       <Link
@@ -31,7 +32,9 @@ const Modal = (props: Props) => {
         className='fixed top-0 left-0 w-full h-full bg-black opacity-50'
       ></Link>
       <div className='relative w-defaultWidth'>
-        <div className='h-fit max-h-[90vh] p-8 bg-white rounded-xl overflow-y-scroll overflow-x-hidden'>
+        <div
+          className={`h-fit max-h-[90vh] p-8 bg-white rounded-xl overflow-y-scroll overflow-x-hidden ${containerStyle}`}
+        >
           {props.children}
         </div>
         <Link href={closeLink} className='absolute -top-4 -right-4 w-fit p-4 rounded-full bg-black'>
