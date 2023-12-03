@@ -43,9 +43,9 @@ const ItemModals = (props: Props) => {
   // want
   const [itemBrand, setItemBrand] = useState<string>(brand)
   const [itemUrl, setItemUrl] = useState<string>(url)
-  const [itemAsset, setItemAsset] = useState<string>(conditions.asset)
-  const [itemPeriod, setItemPeriod] = useState<string>(conditions.period)
-  const [itemProperty, setItemProperty] = useState<number>(conditions.property)
+  const [itemAsset, setItemAsset] = useState<string>(conditions?.asset)
+  const [itemPeriod, setItemPeriod] = useState<string>(conditions?.period)
+  const [itemProperty, setItemProperty] = useState<number>(conditions?.property)
 
   const onSubmitEdit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -108,6 +108,27 @@ const ItemModals = (props: Props) => {
       `${process.env.NEXT_PUBLIC_NEST_API}/stuff/${type}/delete/${category}/${id}`,
     )
     return res
+  }
+
+  const onSubmitMove = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    try {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_NEST_API}/stuff/want/to-property/${category}/${id}`,
+        {
+          name: itemName,
+          thumbnail: itemThumbnail,
+          score: itemScore,
+          price: itemPrice,
+          address: itemAddress,
+          purchaseDate: itemPurchaseDate,
+          purchasePlace: itemPurchasePlace,
+        },
+      )
+      return res
+    } catch (error) {
+      console.log(`${type} edit error`, error)
+    }
   }
 
   return (
@@ -284,9 +305,15 @@ const ItemModals = (props: Props) => {
       )}
       {crud === 'move' && (
         <Modal param='crud'>
-          <form action='' className=''>
+          <form action='' className='' onSubmit={onSubmitMove}>
             <div className='flex flex-col gap-8 mb-12'>
-              <Input id='item-name' label='アイテム名' placeholder='アイテム名を入力してください' />
+              <Input
+                id='item-name'
+                label='アイテム名'
+                placeholder='アイテム名を入力してください'
+                value={itemName}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setItemName(e.target.value)}
+              />
               <label htmlFor='item-thumbnail' className='flex flex-col gap-3'>
                 <span className='text-[1.4rem] font-bold'>サムネイル</span>
                 <div className='flex flex-row gap-4 items-center'>
@@ -300,16 +327,65 @@ const ItemModals = (props: Props) => {
                     />
                   </div>
                   <span className='text-defaultText'>画像をアップロード</span>
-                  <input id='item-thumbnail' type='file' className='hidden' />
+                  <input
+                    id='item-thumbnail'
+                    type='file'
+                    className='hidden'
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      if (e.target.files && e.target.files[0]) {
+                        setItemThumbnail(URL.createObjectURL(e.target.files[0]))
+                      }
+                    }}
+                  />
                 </div>
               </label>
-              <Input id='item-score' label='スコア' placeholder='80' />
-              <Input id='item-price' label='価格' placeholder='12,000' />
-              <Input id='item-address' label='住所' placeholder='衣装ケース' />
-              <Input id='item-date' label='購入日' placeholder='2019/10/10' />
-              <Input id='item-place' label='購入場所' placeholder='青山のオーラリー' />
+              <Input
+                id='item-score'
+                label='スコア'
+                placeholder='80'
+                value={itemScore}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setItemScore(e.target.value as unknown as number)
+                }
+              />
+              <Input
+                id='item-price'
+                label='価格'
+                placeholder='12,000'
+                value={itemPrice}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setItemPrice(e.target.value as unknown as number)
+                }
+              />
+              <Input
+                id='item-address'
+                label='住所'
+                placeholder='衣装ケース'
+                value={itemAddress}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setItemAddress(e.target.value)
+                }
+              />
+              <Input
+                id='item-date'
+                label='購入日'
+                placeholder='2019/10/10'
+                value={itemPurchaseDate}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setItemPurchaseDate(e.target.value)
+                }
+              />
+              <Input
+                id='item-place'
+                label='購入場所'
+                placeholder='青山のオーラリー'
+                value={itemPurchasePlace}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setItemPurchasePlace(e.target.value)
+                }
+              />
             </div>
-            <Button>変更</Button>
+            <Button type='submit'>変更</Button>
           </form>
         </Modal>
       )}
