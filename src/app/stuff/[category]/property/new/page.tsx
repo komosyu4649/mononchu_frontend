@@ -1,11 +1,8 @@
 import Breadcrumb from '@/components/Breadcrumb'
-import Button from '@/components/Button'
-import Input from '@/components/Input'
 import Label from '@/components/Label'
 import CategoryAddForm from '@/components/stuff/CategoryAddForm'
 import axios from 'axios'
-import Image from 'next/image'
-import React, { useState } from 'react'
+import React from 'react'
 
 type Props = {
   params: {
@@ -14,8 +11,8 @@ type Props = {
   searchParams: {}
 }
 
-export default async function StuffCategoryNew(props: Props) {
-  const { params, searchParams } = props
+export default async function StuffPropertyNew(props: Props) {
+  const { params } = props
   const { category } = params
   const categoryDetail = await axios.get(`${process.env.NEST_API}/stuff/category/${category}`)
   const { rank, name, icon, propertyRegistrationNumber, propertyLimitedNumber } =

@@ -107,115 +107,7 @@ export default async function StuffDetailWant(props: Props) {
 
   return (
     <>
-      {/* {isEditModalOpen && (
-        <Modal onClose={() => setIsEditModalOpen(false)}>
-          <form action='' className=''>
-            <div className='flex flex-col gap-8 mb-12'>
-              <Input id='item-name' label='アイテム名' placeholder='アイテム名を入力してください' />
-              <label htmlFor='item-thumbnail' className='flex flex-col gap-3'>
-                <span className='text-[1.4rem] font-bold'>サムネイル</span>
-                <div className='flex flex-row gap-4 items-center'>
-                  <div className='h-fit p-3 bg-black rounded-full'>
-                    <Image
-                      src='/assets/img/common/icon_picture.svg'
-                      alt='画像'
-                      width={100}
-                      height={100}
-                      className='w-6 h-6'
-                    />
-                  </div>
-                  <span className='text-defaultText'>画像をアップロード</span>
-                  <input id='item-thumbnail' type='file' className='hidden' />
-                </div>
-              </label>
-              <Input id='item-score' label='スコア' placeholder='80' />
-              <Input id='item-price' label='価格' placeholder='12,000' />
-
-              <Input
-                id='item-brand'
-                label='ブランド'
-                placeholder='アイテムのブランドを入力してください'
-              />
-              <Input id='item-url' label='URL' placeholder='アイテムのURLを入力してください' />
-              <div className=''>
-                <span className='text-[1.4rem] font-bold'>購入条件</span>
-                <div className='flex flex-col gap-4 mt-4 p-6 border border-line bg-gray rounded-md'>
-                  <Input
-                    id='item-conditions-asset'
-                    label='資産額(いくらになったら？)'
-                    placeholder='目標資産額を入力してください'
-                    size='sm'
-                  />
-                  <Input
-                    id='item-conditions-period'
-                    label='期間(いつ？)'
-                    placeholder='目標購入時期を入力してください'
-                    size='sm'
-                  />
-                  <Input
-                    id='item-conditions-number'
-                    label='所有アイテム数(いくつになったら？)'
-                    placeholder='目標所有アイテム数を入力してください'
-                    size='sm'
-                  />
-                </div>
-              </div>
-            </div>
-            <Button>変更</Button>
-          </form>
-        </Modal>
-      )} */}
-      {/* {isDeleteModalOpen && (
-        <Modal onClose={() => setIsDeleteModalOpen(false)}>
-          <div className=''>
-            <div className='flex flex-col gap-6'>
-              <h2 className='text-[1.8rem] font-bold text-center'>完全に削除しますか？</h2>
-              <p className='text-defaultText text-center'>
-                「comoliのジーパン」を完全に削除しますか？ <br />
-                この操作は戻すことができません。
-              </p>
-            </div>
-            <div className='flex flex-row gap-4 mt-8'>
-              <Button color='dangerRev'>削除</Button>
-              <Button color='light' onClick={() => setIsDeleteModalOpen(false)}>
-                キャンセル
-              </Button>
-            </div>
-          </div>
-        </Modal>
-      )} */}
-      {/* {isUpdateModalOpen && (
-        <Modal onClose={() => setIsUpdateModalOpen(false)}>
-          <div className=''>
-            <div className='flex flex-col gap-8 mb-10'>
-              <Input id='item-name' label='アイテム名' placeholder='アイテム名を入力してください' />
-              <label htmlFor='item-thumbnail' className='flex flex-col gap-3'>
-                <span className='text-[1.4rem] font-bold'>サムネイル</span>
-                <div className='flex flex-row gap-4 items-center'>
-                  <div className='h-fit p-3 bg-black rounded-full'>
-                    <Image
-                      src='/assets/img/common/icon_picture.svg'
-                      alt='画像'
-                      width={100}
-                      height={100}
-                      className='w-6 h-6'
-                    />
-                  </div>
-                  <span className='text-defaultText'>画像をアップロード</span>
-                  <input id='item-thumbnail' type='file' className='hidden' />
-                </div>
-              </label>
-              <Input id='item-score' label='スコア' placeholder='80' />
-              <Input id='item-price' label='価格' placeholder='12,000' />
-              <Input id='item-address' label='住所' placeholder='衣装ケース' />
-              <Input id='item-date' label='購入日' placeholder='2019/10/10' />
-              <Input id='item-place' label='購入場所' placeholder='青山のオーラリー' />
-            </div>
-            <Button>所有に移動</Button>
-          </div>
-        </Modal>
-      )} */}
-      <ItemModals type='want' itemDetailData={itemDetailData} />
+      <ItemModals type='want' itemDetailData={itemDetailData} category={category} />
       <Breadcrumb
         crumbs={[
           {
@@ -256,18 +148,24 @@ export default async function StuffDetailWant(props: Props) {
           <div className='grid grid-cols-[auto_1fr] items-center mt-8 px-8 py-6 gap-8 border border-line rounded-md'>
             <span className='text-[1.2rem] font-bold'>購入条件</span>
             <div className='flex flex-col gap-3 pl-8 border-l border-line'>
-              <Checkbox
-                id='conditions-asset'
-                text={`資産額${itemDetailData.conditions.asset}いったら`}
-              />
-              <Checkbox
-                id='conditions-period'
-                text={`${itemDetailData.conditions.period}まで欲しかったら`}
-              />
-              <Checkbox
-                id='conditions-property'
-                text={`${categoryDetailData.name}が${itemDetailData.conditions.property}点以下だったら`}
-              />
+              {itemDetailData.conditions.asset && (
+                <Checkbox
+                  id='conditions-asset'
+                  text={`資産額${itemDetailData.conditions.asset}いったら`}
+                />
+              )}
+              {itemDetailData.conditions.period && (
+                <Checkbox
+                  id='conditions-period'
+                  text={`${itemDetailData.conditions.period}まで欲しかったら`}
+                />
+              )}
+              {itemDetailData.conditions.property && (
+                <Checkbox
+                  id='conditions-property'
+                  text={`${categoryDetailData.name}が${itemDetailData.conditions.property}点以下だったら`}
+                />
+              )}
             </div>
           </div>
           <div className='mt-6 px-8 py-6 gap-8 border border-line rounded-md'>

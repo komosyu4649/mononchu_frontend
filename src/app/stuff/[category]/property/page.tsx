@@ -17,7 +17,7 @@ type Props = {
 }
 
 export default async function StuffDetailProperty(props: Props) {
-  const { params, searchParams } = props
+  const { params } = props
   const { category } = params
   const properties = await axios.get(`${process.env.NEST_API}/stuff/property/${category}`)
   const categoryData = await axios.get(`${process.env.NEST_API}/stuff/category/${category}`)
@@ -58,20 +58,18 @@ export default async function StuffDetailProperty(props: Props) {
             </div>
           </div>
           <ul className='grid grid-cols-2 gap-[.8rem] mb-6'>
-            {properties.data.map((property: StuffProperty) => {
-              return (
-                <li className='' key={property.id}>
-                  <PropertyCard
-                    href={`/stuff/${category}/property/${property.id}`}
-                    property={property}
-                  />
-                </li>
-              )
-            })}
+            {properties.data.map((property: StuffProperty) => (
+              <li className='' key={property.id}>
+                <PropertyCard
+                  href={`/stuff/${category}/property/${property.id}`}
+                  property={property}
+                />
+              </li>
+            ))}
           </ul>
           <div className='flex flex-col gap-4'>
             <Button href={`/stuff/${category}/property/new`}>アイテムを追加</Button>
-            <Button href={`/stuff/${category}`} color='light'>
+            <Button href={`/stuff/${category}`} color='lightRev'>
               一覧に戻る
             </Button>
           </div>
