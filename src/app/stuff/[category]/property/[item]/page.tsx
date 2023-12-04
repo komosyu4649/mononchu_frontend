@@ -33,6 +33,10 @@ export default async function StuffDetailProperty(props: Props) {
   // console.log('searchParams', searchParams)
   const crudMemoEdit = searchParams['crud-memo-edit']
   const crudMemoDelete = searchParams['crud-memo-delete']
+  const memoDetail = await axios.get(
+    `${process.env.NEST_API}/stuff/memo/property/${category}/${item}/${crudMemoEdit}`,
+  )
+  console.log(memoDetail.data)
   // console.log('crudMemoEdit', crudMemoEdit)
   // console.log('crudMemoDelete', crudMemoDelete)
 

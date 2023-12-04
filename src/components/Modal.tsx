@@ -33,7 +33,11 @@ const Modal = (props: Props) => {
       ></Link>
       <div className='relative w-defaultWidth'>
         <div
-          className={`h-fit max-h-[90vh] p-8 bg-white rounded-xl overflow-y-scroll overflow-x-hidden ${containerStyle}`}
+          className={
+            containerStyle
+              ? containerStyle
+              : 'h-fit max-h-[90vh] p-8 bg-white rounded-xl overflow-y-scroll overflow-x-hidden'
+          }
         >
           {props.children}
         </div>

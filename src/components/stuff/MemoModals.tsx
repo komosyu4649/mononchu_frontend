@@ -14,7 +14,7 @@ type Props = {
 
 const MemoModals = (props: Props) => {
   const { type, category, item } = props
-  console.log(type, category, item)
+  // console.log(type, category, item)
   const router = useRouter()
   const searchParams = useSearchParams()
   // const crud = searchParams.get('crud')
