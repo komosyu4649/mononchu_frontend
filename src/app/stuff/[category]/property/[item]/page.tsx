@@ -11,7 +11,7 @@ import { Memo, StuffProperty } from '@/type'
 import axios from 'axios'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { memo } from 'react'
 
 type Props = {
   params: {
@@ -33,12 +33,18 @@ export default async function StuffDetailProperty(props: Props) {
   // console.log('searchParams', searchParams)
   const crudMemoEdit = searchParams['crud-memo-edit']
   const crudMemoDelete = searchParams['crud-memo-delete']
-  const memoDetail = await axios.get(
-    `${process.env.NEST_API}/stuff/memo/property/${category}/${item}/${crudMemoEdit}`,
-  )
-  console.log(memoDetail.data)
   // console.log('crudMemoEdit', crudMemoEdit)
   // console.log('crudMemoDelete', crudMemoDelete)
+  let memoDetailData: Memo | undefined
+  if (crudMemoEdit) {
+    const memoDetail = await axios.get(
+      `${process.env.NEST_API}/stuff/memo/property/${category}/${item}/${crudMemoEdit}`,
+    )
+    memoDetailData = memoDetail.data
+  } else {
+    memoDetailData = undefined
+  }
+  // console.log('memoDetailData', memoDetailData)
 
   const itemInfoList = [
     {
@@ -88,7 +94,13 @@ export default async function StuffDetailProperty(props: Props) {
   return (
     <>
       <ItemModals type='property' itemDetailData={itemDetailData} category={category} />
-      <MemoModals type='property' category={category} item={item} />
+      <MemoModals
+        type='property'
+        category={category}
+        item={item}
+        memoDetailData={memoDetailData}
+        crudMemoDelete={crudMemoDelete}
+      />
       <Breadcrumb
         crumbs={[
           {

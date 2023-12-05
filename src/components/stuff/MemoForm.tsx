@@ -6,16 +6,19 @@ import React, { useState } from 'react'
 import Button from '../Button'
 import { urbanist } from '@/app/fonts'
 import axios from 'axios'
+import { Memo } from '@/type'
 
 type Props = {
   type: 'property' | 'want'
   category: string
   item: string
   id?: string
+  memoDetailData?: Memo | undefined
+  crudMemoDelete?: string | string[] | undefined
 }
 
 const MemoForm = (props: Props) => {
-  const { type, category, item, id } = props
+  const { type, category, item, id, memoDetailData, crudMemoDelete } = props
   const fiveW = [
     {
       param: 'why',
@@ -41,10 +44,10 @@ const MemoForm = (props: Props) => {
 
   //   console.log('props', props)
 
-  const [text, setText] = useState('')
+  const [text, setText] = useState(memoDetailData?.memo || '')
   // fiveWParamには同じparamを入れない
-  const [fiveWParam, setFiveWParam] = useState<string[]>([])
-  const [image, setImage] = useState('')
+  const [fiveWParam, setFiveWParam] = useState<string[]>(memoDetailData?.fiveW || [])
+  const [image, setImage] = useState(memoDetailData?.image || '')
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -117,7 +120,7 @@ const MemoForm = (props: Props) => {
           value={text}
           onChange={(e) => setText(e.target.value)}
         ></textarea>
-        <Button type='submit'>投稿する</Button>
+        <Button type='submit'>{id ? '更新する' : '登録する'}</Button>
       </div>
     </form>
   )
