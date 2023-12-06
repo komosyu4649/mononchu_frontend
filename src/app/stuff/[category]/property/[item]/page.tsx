@@ -25,16 +25,12 @@ export default async function StuffDetailProperty(props: Props) {
   const { params, searchParams } = props
   const { category, item } = params
   const itemDetail = await axios.get(`${process.env.NEST_API}/stuff/property/${category}/${item}`)
-  // console.log(propertyDetail.data)
+
   const itemDetailData: StuffProperty = itemDetail.data
-  const memos = await axios.get(`${process.env.NEST_API}/stuff/memo/property/${category}/${item}`)
-  const memosData = memos.data
-  // console.log(memos.data)
-  // console.log('searchParams', searchParams)
+
   const crudMemoEdit = searchParams['crud-memo-edit']
   const crudMemoDelete = searchParams['crud-memo-delete']
-  // console.log('crudMemoEdit', crudMemoEdit)
-  // console.log('crudMemoDelete', crudMemoDelete)
+
   let memoDetailData: Memo | undefined
   if (crudMemoEdit) {
     const memoDetail = await axios.get(
@@ -44,7 +40,6 @@ export default async function StuffDetailProperty(props: Props) {
   } else {
     memoDetailData = undefined
   }
-  // console.log('memoDetailData', memoDetailData)
 
   const itemInfoList = [
     {

@@ -7,7 +7,8 @@ import Modal from '@/components/Modal'
 import ItemInformation from '@/components/stuff/ItemInformation'
 import ItemModals from '@/components/stuff/ItemModals'
 import MemoContainer from '@/components/stuff/MemoContainer'
-import { StuffCategory, StuffWant } from '@/type'
+import MemoModals from '@/components/stuff/MemoModals'
+import { Memo, StuffCategory, StuffWant } from '@/type'
 import axios from 'axios'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -18,27 +19,34 @@ type Props = {
     category: string
     item: string
   }
-  searchParams: {}
+  searchParams: { [key: string]: string | string[] | undefined }
 }
 
 export default async function StuffDetailWant(props: Props) {
-  const { params } = props
+  const { params, searchParams } = props
   const { category, item } = params
   const categoryDetail = await axios.get(`${process.env.NEST_API}/stuff/category/${category}`)
-  // console.log(categoryDetail.data)
+
   const categoryDetailData: StuffCategory = categoryDetail.data
   const itemDetail = await axios.get(`${process.env.NEST_API}/stuff/want/${category}/${item}`)
   const itemDetailData: StuffWant = itemDetail.data
-  // console.log(itemDetailData)
-  // // 編集モーダル
-  // const [isEditModalOpen, setIsEditModalOpen] = useState(false)
-  // const openEditModal = () => setIsEditModalOpen(true)
-  // // 削除モーダル
-  // const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
-  // const openDeleteModal = () => setIsDeleteModalOpen(true)
-  // // 所有しているモノへの更新モーダル
-  // const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false)
-  // const openUpdateModal = () => setIsUpdateModalOpen(true)
+
+  const crudMemoEdit = searchParams['crud-memo-edit']
+  const crudMemoDelete = searchParams['crud-memo-delete']
+
+  let memoDetailData: Memo | undefined
+  if (crudMemoEdit) {
+    // console.log(`${process.env.NEST_API}/stuff/memo/want/${category}/${item}/${crudMemoEdit}`)
+    const memoDetail = await axios.get(
+      `${process.env.NEST_API}/stuff/memo/want/${category}/${item}/${crudMemoEdit}`,
+    )
+    memoDetailData = memoDetail.data
+  } else {
+    memoDetailData = undefined
+  }
+
+  // console.log('memoDetailData', memoDetailData)
+  // console.log('crudMemoDelete', crudMemoDelete)
 
   const itemInfoList = [
     {
@@ -108,6 +116,13 @@ export default async function StuffDetailWant(props: Props) {
   return (
     <>
       <ItemModals type='want' itemDetailData={itemDetailData} category={category} />
+      <MemoModals
+        type='want'
+        category={category}
+        item={item}
+        memoDetailData={memoDetailData}
+        crudMemoDelete={crudMemoDelete}
+      />
       <Breadcrumb
         crumbs={[
           {

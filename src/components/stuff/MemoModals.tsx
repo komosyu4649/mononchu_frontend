@@ -21,17 +21,15 @@ const MemoModals = (props: Props) => {
   const { type, category, item, memoDetailData, crudMemoDelete } = props
   console.log('memoDetailData', memoDetailData)
   console.log('crudMemoDelete', crudMemoDelete)
-  // console.log(type, category, item)
+
   const router = usePathname()
   const searchParams = useSearchParams()
-  // const crud = searchParams.get('crud')
 
   const params = new URLSearchParams(searchParams.toString())
-  // console.log('params', params)
+
   const editParam = params.get('crud-memo-edit')
   const deleteParam = params.get('crud-memo-delete')
-  // console.log('editParam', editParam)
-  // console.log('deleteParam', deleteParam)
+
   params.delete('crud-memo-delete')
 
   const closeLink = {
