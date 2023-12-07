@@ -1,18 +1,8 @@
-// 'use client'
-
 import Breadcrumb from '@/components/Breadcrumb'
 import Button from '@/components/Button'
 import React from 'react'
-// import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
-import { Pie } from 'react-chartjs-2'
-import ChartPie from '@/components/asset/ChartPie'
-import { urbanist } from '@/app/fonts'
-import axios from 'axios'
 import ChartContainer from '@/components/asset/ChartContainer'
-import { AssetCategory } from '@/type'
 import { useAssetChart } from '@/hooks/useAssetChart'
-
-// ChartJS.register(ArcElement, Tooltip, Legend)
 
 export default async function AssetProperty() {
   // assetChartから値を受け取る
@@ -30,8 +20,8 @@ export default async function AssetProperty() {
             url: '/asset',
           },
           {
-            name: '欲しいモノ',
-            url: '/asset/want',
+            name: '所有しているモノ',
+            url: '/asset/property',
           },
         ]}
       />

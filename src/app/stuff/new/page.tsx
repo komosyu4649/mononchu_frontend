@@ -11,16 +11,13 @@ export default function StuffNew() {
   const [name, setName] = useState('')
   const [limit, setLimit] = useState('')
   const [icon, setIcon] = useState('')
-  // console.log(icon)
   const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // console.log(process.env.NEST_API)
     const res = await axios.post(`${process.env.NEXT_PUBLIC_NEST_API}/stuff/category/create`, {
       name: name,
       icon: `&#x${icon};`,
       propertyLimitedNumber: limit,
     })
-    // console.log('res', res)
     return res
   }
   return (

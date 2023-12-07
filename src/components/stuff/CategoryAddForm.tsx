@@ -28,12 +28,9 @@ const CategoryAddForm = (props: Props) => {
   const [period, setPeriod] = useState('')
   const [number, setNumber] = useState('')
 
-  console.log(name, thumbnail, score, price, address, purchaseDate, purchasePlace)
   const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(process.env.NEXT_PUBLIC_NEST_API)
     if (type === 'property') {
-      console.log(1, category)
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_NEST_API}/stuff/${type}/create/${category}`,
         {
@@ -46,10 +43,8 @@ const CategoryAddForm = (props: Props) => {
           purchasePlace,
         },
       )
-      console.log('res', res)
       return res
     } else {
-      console.log(2, category)
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_NEST_API}/stuff/${type}/create/${category}`,
         {
@@ -66,7 +61,6 @@ const CategoryAddForm = (props: Props) => {
           },
         },
       )
-      console.log('res', res)
       return res
     }
   }

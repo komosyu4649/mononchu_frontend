@@ -13,7 +13,7 @@ export default async function Stuff() {
         crumbs={[
           {
             name: 'マイページ',
-            url: '/mypage',
+            url: '/',
           },
           {
             name: 'モノ',

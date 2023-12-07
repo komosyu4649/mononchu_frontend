@@ -9,7 +9,6 @@ ChartJS.register(ArcElement, Tooltip, Legend)
 
 type Props = {
   data: ChartData<'pie'>
-  //   options?: Chart.ChartOptions
 }
 
 const ChartContainer = (props: Props) => {

@@ -17,7 +17,6 @@ type Props = {
 
 const ItemModals = (props: Props) => {
   const { type, itemDetailData, category } = props
-  // console.log('itemDetailData', itemDetailData)
   const router = usePathname()
   const searchParams = useSearchParams()
   const crud = searchParams.get('crud')
@@ -49,20 +48,6 @@ const ItemModals = (props: Props) => {
 
   const onSubmitEdit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log('edit', type)
-    console.log({
-      name: itemName,
-      thumbnail: itemThumbnail,
-      score: itemScore,
-      price: itemPrice,
-      brand: itemBrand,
-      url: itemUrl,
-      conditions: {
-        asset: itemAsset,
-        period: itemPeriod,
-        property: itemProperty,
-      },
-    })
     try {
       if (type === 'property') {
         const res = await axios.patch(
