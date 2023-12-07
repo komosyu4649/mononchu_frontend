@@ -3,10 +3,23 @@ import Breadcrumb from '@/components/Breadcrumb'
 import Button from '@/components/Button'
 import Input from '@/components/Input'
 import Label from '@/components/Label'
+import CategoryAddForm from '@/components/stuff/CategoryAddForm'
+import axios from 'axios'
 import Image from 'next/image'
 import React from 'react'
 
-export default function page() {
+type Props = {
+  params: {
+    category: string
+  }
+  searchParams: {}
+}
+
+export default async function StuffWantNew(props: Props) {
+  const { params } = props
+  const { category } = params
+  const categoryDetail = await axios.get(`${process.env.NEST_API}/stuff/category/${category}`)
+  const { rank, name, icon, wantRegistrationNumber, wantTotalAmount } = categoryDetail.data
   return (
     <>
       <Breadcrumb
@@ -36,18 +49,22 @@ export default function page() {
       <main className='w-defaultWidth m-auto mt-16'>
         <div className='mb-10'>
           <div className='flex flex-row justify-center items-center gap-6 mb-4'>
-            <span className='p-3 text-[2rem] leading-none border border-line rounded-full'>
-              &#128084;
-            </span>
+            <span
+              className='p-3 text-[2.4rem] leading-none border border-line rounded-full'
+              dangerouslySetInnerHTML={{ __html: icon }}
+            />
             <div className='flex flex-row items-center gap-2'>
-              <Label size='md'>14</Label>
+              <Label size='md'>{wantRegistrationNumber}</Label>
               <span className={`text-[1.2rem] font-bold ${urbanist.className}`}>=</span>
-              <span className={`text-[1.2rem] font-bold ${urbanist.className}`}>¥121,000</span>
+              <span className={`text-[1.2rem] font-bold ${urbanist.className}`}>
+                ¥{wantTotalAmount}
+              </span>
             </div>
           </div>
-          <h1 className='text-defaultTitle text-center'>欲しい洋服の追加</h1>
+          <h1 className='text-defaultTitle text-center'>欲しい{name}の追加</h1>
         </div>
-        <form action='' className=''>
+        <CategoryAddForm category={category} type='want' />
+        {/* <form action='' className=''>
           <div className='flex flex-col gap-8 mb-10 p-8 border border-line rounded-xl'>
             <Input id='item-name' label='アイテム名' placeholder='アイテム名を入力してください' />
             <label htmlFor='item-thumbnail' className='flex flex-col gap-3'>
@@ -95,7 +112,7 @@ export default function page() {
             </div>
           </div>
           <Button>追加する</Button>
-        </form>
+        </form> */}
       </main>
     </>
   )

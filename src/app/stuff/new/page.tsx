@@ -1,9 +1,28 @@
+'use client'
+
 import Breadcrumb from '@/components/Breadcrumb'
 import Button from '@/components/Button'
+import EmojiSelectBox from '@/components/EmojiSelectInput'
 import Input from '@/components/Input'
-import React from 'react'
+import axios from 'axios'
+import React, { useState } from 'react'
 
-export default function page() {
+export default function StuffNew() {
+  const [name, setName] = useState('')
+  const [limit, setLimit] = useState('')
+  const [icon, setIcon] = useState('')
+  // console.log(icon)
+  const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    // console.log(process.env.NEST_API)
+    const res = await axios.post(`${process.env.NEXT_PUBLIC_NEST_API}/stuff/category/create`, {
+      name: name,
+      icon: `&#x${icon};`,
+      propertyLimitedNumber: limit,
+    })
+    // console.log('res', res)
+    return res
+  }
   return (
     <>
       <Breadcrumb
@@ -24,26 +43,29 @@ export default function page() {
       />
       <main className='w-defaultWidth m-auto mt-16'>
         <h1 className='text-defaultTitle text-center mb-10'>新規カテゴリー追加</h1>
-        <form action='' className=''>
+        <form action='' className='' onSubmit={onSubmitHandler}>
           <div className='flex flex-col gap-8 mb-10 p-8 border border-line rounded-xl'>
             <Input
               id='cat-name'
               label='カテゴリー名'
               placeholder='カテゴリー名を入力してください'
+              value={name}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
             />
-            <label htmlFor='' className='flex flex-col gap-3'>
-              <span className='text-[1.4rem] font-bold'>カテゴリーアイコン</span>
-              <button className='inline-block w-fit p-8 text-[3.6rem] leading-none bg-gray rounded-md'>
-                &#128513;
-              </button>
-            </label>
+            <EmojiSelectBox
+              id='cat-icon'
+              label='カテゴリーアイコン'
+              onEmojiSelect={(emoji) => setIcon(emoji.unifiedWithoutSkinTone)}
+            />
             <Input
               id='cat-limit'
               label='アイテム上限数'
               placeholder='アイテム上限数を入力してください'
+              value={limit}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLimit(e.target.value)}
             />
           </div>
-          <Button>変更</Button>
+          <Button type='submit'>追加</Button>
         </form>
       </main>
     </>
