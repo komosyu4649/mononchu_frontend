@@ -14,13 +14,10 @@ type Props = {
   item: string
   memoDetailData: Memo | undefined
   crudMemoDelete: string | string[] | undefined
-  // searchParams: { [key: string]: string | string[] | undefined }
 }
 
 const MemoModals = (props: Props) => {
   const { type, category, item, memoDetailData, crudMemoDelete } = props
-  console.log('memoDetailData', memoDetailData)
-  console.log('crudMemoDelete', crudMemoDelete)
 
   const router = usePathname()
   const searchParams = useSearchParams()

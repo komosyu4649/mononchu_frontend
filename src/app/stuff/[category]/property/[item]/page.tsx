@@ -31,6 +31,9 @@ export default async function StuffDetailProperty(props: Props) {
   const crudMemoEdit = searchParams['crud-memo-edit']
   const crudMemoDelete = searchParams['crud-memo-delete']
 
+  const categoryDetail = await axios.get(`${process.env.NEST_API}/stuff/category/${category}`)
+  const categoryDetailData = categoryDetail.data
+
   let memoDetailData: Memo | undefined
   if (crudMemoEdit) {
     const memoDetail = await axios.get(
@@ -107,16 +110,16 @@ export default async function StuffDetailProperty(props: Props) {
             url: '/stuff',
           },
           {
-            name: '洋服',
-            url: '/stuff/detail',
+            name: categoryDetailData.name,
+            url: `/stuff/${category}`,
           },
           {
-            name: '所有している洋服',
-            url: '/stuff/detail/property',
+            name: '所有しているモノ',
+            url: `/stuff/${category}/property`,
           },
           {
-            name: 'auraleeのカーディガン',
-            url: '/stuff/detail/property/detail',
+            name: itemDetailData.name,
+            url: `/stuff/${category}/property/${item}`,
           },
         ]}
       />

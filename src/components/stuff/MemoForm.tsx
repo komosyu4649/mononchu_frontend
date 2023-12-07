@@ -42,8 +42,6 @@ const MemoForm = (props: Props) => {
     },
   ]
 
-  //   console.log('props', props)
-
   const [text, setText] = useState(memoDetailData?.memo || '')
   // fiveWParamには同じparamを入れない
   const [fiveWParam, setFiveWParam] = useState<string[]>(memoDetailData?.fiveW || [])
@@ -51,7 +49,7 @@ const MemoForm = (props: Props) => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // console.log(text, fiveWParam, image)
+
     const res = await axios.post(
       `${process.env.NEXT_PUBLIC_NEST_API}/stuff/memo/${type}/create/${category}/${item}`,
       {

@@ -24,7 +24,7 @@ const Modal = (props: Props) => {
     pathname: router,
     query: Object.fromEntries(params),
   }
-  // console.log(closeLink)
+
   return (
     <div className='fixed top-0 left-0 flex justify-center items-center w-full h-full z-50'>
       <Link

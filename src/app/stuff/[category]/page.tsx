@@ -1,17 +1,12 @@
-// 'use client'
-
 import { urbanist } from '@/app/fonts'
 import Breadcrumb from '@/components/Breadcrumb'
 import Button from '@/components/Button'
-import Input from '@/components/Input'
 import Label from '@/components/Label'
-import Modal from '@/components/Modal'
 import CategoryHeader from '@/components/stuff/CategoryHeader'
 import PropertyCard from '@/components/stuff/PropertyCard'
 import WantCard from '@/components/stuff/WantCard'
 import { StuffProperty, StuffWant } from '@/type'
 import axios from 'axios'
-import Link from 'next/link'
 
 type Props = {
   params: {
@@ -21,10 +16,9 @@ type Props = {
 }
 
 export default async function StuffDetail(props: Props) {
-  const { params, searchParams } = props
+  const { params } = props
   const { category } = params
   const categoryData = await axios.get(`${process.env.NEST_API}/stuff/category/${category}`)
-  // console.log(categoryData)
   const properties = await axios.get(`${process.env.NEST_API}/stuff/property/${category}?limit=4`)
   const wants = await axios.get(`${process.env.NEST_API}/stuff/want/${category}?limit=4`)
 
@@ -41,8 +35,8 @@ export default async function StuffDetail(props: Props) {
             url: '/stuff',
           },
           {
-            name: '洋服',
-            url: '/detail',
+            name: categoryData.data.name,
+            url: `/stuff/${category}`,
           },
         ]}
       />

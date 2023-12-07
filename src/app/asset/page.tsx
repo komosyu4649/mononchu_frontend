@@ -18,7 +18,7 @@ export default async function Asset() {
         crumbs={[
           {
             name: 'マイページ',
-            url: '/mypage',
+            url: '/',
           },
           {
             name: '資産',

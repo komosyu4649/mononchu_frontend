@@ -35,12 +35,12 @@ export default async function StuffDetailProperty(props: Props) {
             url: '/stuff',
           },
           {
-            name: '洋服',
-            url: '/stuff/detail',
+            name: categoryData.data.name,
+            url: `/stuff/${category}`,
           },
           {
             name: '欲しいモノ',
-            url: '/property',
+            url: `/stuff/${category}/want`,
           },
         ]}
       />

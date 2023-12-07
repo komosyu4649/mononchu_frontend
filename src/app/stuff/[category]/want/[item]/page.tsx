@@ -36,7 +36,6 @@ export default async function StuffDetailWant(props: Props) {
 
   let memoDetailData: Memo | undefined
   if (crudMemoEdit) {
-    // console.log(`${process.env.NEST_API}/stuff/memo/want/${category}/${item}/${crudMemoEdit}`)
     const memoDetail = await axios.get(
       `${process.env.NEST_API}/stuff/memo/want/${category}/${item}/${crudMemoEdit}`,
     )
@@ -44,9 +43,6 @@ export default async function StuffDetailWant(props: Props) {
   } else {
     memoDetailData = undefined
   }
-
-  // console.log('memoDetailData', memoDetailData)
-  // console.log('crudMemoDelete', crudMemoDelete)
 
   const itemInfoList = [
     {
@@ -134,16 +130,16 @@ export default async function StuffDetailWant(props: Props) {
             url: '/stuff',
           },
           {
-            name: '洋服',
-            url: '/stuff/detail',
+            name: categoryDetailData.name,
+            url: `/stuff/${category}`,
           },
           {
-            name: '欲しい洋服',
-            url: '/stuff/detail/want',
+            name: '欲しいモノ',
+            url: `/stuff/${category}/want`,
           },
           {
-            name: 'comoloのジーパン',
-            url: '/stuff/detail/want/detail',
+            name: itemDetailData.name,
+            url: `/stuff/${category}/want/${item}`,
           },
         ]}
       />

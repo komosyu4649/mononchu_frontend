@@ -10,7 +10,6 @@ type Props = {
 
 const CategoryCard = (props: Props) => {
   const { category } = props
-  console.log(category)
   return (
     <Link
       href={`/stuff/${category.id}`}

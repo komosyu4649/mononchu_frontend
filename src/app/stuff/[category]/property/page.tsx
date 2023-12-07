@@ -20,7 +20,8 @@ export default async function StuffDetailProperty(props: Props) {
   const { params } = props
   const { category } = params
   const properties = await axios.get(`${process.env.NEST_API}/stuff/property/${category}`)
-  const categoryData = await axios.get(`${process.env.NEST_API}/stuff/category/${category}`)
+  const categoryDetail = await axios.get(`${process.env.NEST_API}/stuff/category/${category}`)
+  const categoryDetailData = categoryDetail.data
 
   return (
     <>
@@ -35,12 +36,12 @@ export default async function StuffDetailProperty(props: Props) {
             url: '/stuff',
           },
           {
-            name: '洋服',
-            url: '/stuff/detail',
+            name: categoryDetailData.name,
+            url: `/stuff/${category}`,
           },
           {
             name: '所有しているモノ',
-            url: '/property',
+            url: `/stuff/${category}/property`,
           },
         ]}
       />
@@ -52,9 +53,9 @@ export default async function StuffDetailProperty(props: Props) {
               所有しているモノ
             </h2>
             <div className='flex flex-row items-center gap-2'>
-              <Label size='md'>{categoryData.data.propertyRegistrationNumber}</Label>
+              <Label size='md'>{categoryDetail.data.propertyRegistrationNumber}</Label>
               <span className='text-[1.2rem] font-bold'>/</span>
-              <Label size='md'>{categoryData.data.propertyLimitedNumber}</Label>
+              <Label size='md'>{categoryDetail.data.propertyLimitedNumber}</Label>
             </div>
           </div>
           <ul className='grid grid-cols-2 gap-[.8rem] mb-6'>
