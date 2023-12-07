@@ -39,10 +39,10 @@ const ItemInformation = (props: Props) => {
             ))}
           </ul>
           <div className='flex flex-row justify-end gap-4 mt-6'>
-            <Link href='?crud=edit' className='inline text-[1.2rem] underline'>
+            <Link href='?crud=edit' className='inline text-[1.2rem] underline' scroll={false}>
               編集
             </Link>
-            <Link href='?crud=delete' className='inline text-[1.2rem] underline'>
+            <Link href='?crud=delete' className='inline text-[1.2rem] underline' scroll={false}>
               削除
             </Link>
           </div>

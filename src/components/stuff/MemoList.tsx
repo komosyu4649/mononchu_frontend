@@ -42,12 +42,14 @@ const MemoList = async (props: Props) => {
                 <Link
                   href={`/stuff/${category}/${type}/${item}?crud-memo-edit=${memo.id}`}
                   className='inline text-[1.2rem] underline'
+                  scroll={false}
                 >
                   編集
                 </Link>
                 <Link
                   href={`/stuff/${category}/${type}/${item}?crud-memo-delete=${memo.id}`}
                   className='inline text-[1.2rem] underline'
+                  scroll={false}
                 >
                   削除
                 </Link>

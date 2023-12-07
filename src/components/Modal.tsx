@@ -30,6 +30,7 @@ const Modal = (props: Props) => {
       <Link
         href={closeLink}
         className='fixed top-0 left-0 w-full h-full bg-black opacity-50'
+        scroll={false}
       ></Link>
       <div className='relative w-defaultWidth'>
         <div
@@ -41,7 +42,11 @@ const Modal = (props: Props) => {
         >
           {props.children}
         </div>
-        <Link href={closeLink} className='absolute -top-4 -right-4 w-fit p-4 rounded-full bg-black'>
+        <Link
+          href={closeLink}
+          className='absolute -top-4 -right-4 w-fit p-4 rounded-full bg-black'
+          scroll={false}
+        >
           <Image
             src='/assets/img/common/icon_close.svg'
             alt='閉じる'

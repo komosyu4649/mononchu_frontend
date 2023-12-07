@@ -16,10 +16,10 @@ const CategoryHeaderLink = (props: Props) => {
     <div>
       {type === 'parent' ? (
         <div className='flex flex-row gap-4'>
-          <Link href='?crud=edit' className='inline text-[1.2rem] underline'>
+          <Link href='?crud=edit' className='inline text-[1.2rem] underline' scroll={false}>
             編集
           </Link>
-          <Link href='?crud=delete' className='inline text-[1.2rem] underline'>
+          <Link href='?crud=delete' className='inline text-[1.2rem] underline' scroll={false}>
             削除
           </Link>
         </div>

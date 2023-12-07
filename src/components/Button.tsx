@@ -11,6 +11,7 @@ type Props = {
   type?: 'button' | 'submit' | 'reset'
   disabled?: boolean
   loading?: boolean
+  scroll?: boolean
 }
 
 const Button = ({
@@ -23,6 +24,7 @@ const Button = ({
   type = 'button',
   disabled = false,
   loading = false,
+  scroll = false,
   ...props
 }: Props) => {
   const colorStyle = () => {
@@ -46,7 +48,7 @@ const Button = ({
   const commonStyle = `inline-flex justify-center items-center w-${width}  px-8 py-4 text-[1.4rem] font-bold rounded-md ${colorStyle()}`
 
   return href ? (
-    <Link href={href} className={`${commonStyle} ${className}`} {...props}>
+    <Link href={href} className={`${commonStyle} ${className}`} scroll={scroll} {...props}>
       {children}
     </Link>
   ) : (

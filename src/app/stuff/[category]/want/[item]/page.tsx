@@ -157,30 +157,45 @@ export default async function StuffDetailWant(props: Props) {
             itemDetailData={itemDetailData}
             itemInfoList={itemInfoList}
           />
-          <Button href='?crud=move' className='mt-4'>
+          <Button href='?crud=move' className='mt-4' scroll={false}>
             購入済みにする
           </Button>
           <div className='grid grid-cols-[auto_1fr] items-center mt-8 px-8 py-6 gap-8 border border-line rounded-md'>
             <span className='text-[1.2rem] font-bold'>購入条件</span>
-            <div className='flex flex-col gap-3 pl-8 border-l border-line'>
-              {itemDetailData.conditions.asset && (
-                <Checkbox
-                  id='conditions-asset'
-                  text={`資産額${itemDetailData.conditions.asset}いったら`}
-                />
-              )}
-              {itemDetailData.conditions.period && (
-                <Checkbox
-                  id='conditions-period'
-                  text={`${itemDetailData.conditions.period}まで欲しかったら`}
-                />
-              )}
-              {itemDetailData.conditions.property && (
-                <Checkbox
-                  id='conditions-property'
-                  text={`${categoryDetailData.name}が${itemDetailData.conditions.property}点以下だったら`}
-                />
-              )}
+            <div className='pl-8 border-l border-line'>
+              <ul className='flex flex-col gap-3'>
+                {itemDetailData.conditions.asset && (
+                  <li className='list-disc'>
+                    {/* <Checkbox
+                    id='conditions-asset'
+                     text={`資産額${itemDetailData.conditions.asset}いったら`}
+                   /> */}
+                    <p className='text-[1.2rem]'>資産額{itemDetailData.conditions.asset}いったら</p>
+                  </li>
+                )}
+                {itemDetailData.conditions.period && (
+                  <li className='list-disc'>
+                    {/* <Checkbox
+                     id='conditions-period'
+                     text={`${itemDetailData.conditions.period}まで欲しかったら`}
+                   /> */}
+                    <p className='text-[1.2rem]'>
+                      {itemDetailData.conditions.period}まで欲しかったら
+                    </p>
+                  </li>
+                )}
+                {itemDetailData.conditions.property && (
+                  <li className='list-disc'>
+                    {/* <Checkbox
+                      id='conditions-property'
+                      text={`${categoryDetailData.name}が${itemDetailData.conditions.property}点以下だったら`}
+                    /> */}
+                    <p className='text-[1.2rem]'>
+                      {categoryDetailData.name}が{itemDetailData.conditions.property}点以下だったら
+                    </p>
+                  </li>
+                )}
+              </ul>
             </div>
           </div>
           <div className='mt-6 px-8 py-6 gap-8 border border-line rounded-md'>
