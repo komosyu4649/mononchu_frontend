@@ -38,8 +38,20 @@ export default function StuffNew() {
           },
         ]}
       />
-      <main className='w-defaultWidth m-auto mt-16'>
-        <h1 className='text-defaultTitle text-center mb-10'>新規カテゴリー追加</h1>
+      <main
+        className='
+          w-defaultWidth m-auto mt-16
+          md:w-smWidth
+        '
+      >
+        <h1
+          className='
+          text-defaultTitle text-center mb-10
+          md:text-lgTitle
+          '
+        >
+          新規カテゴリー追加
+        </h1>
         <form action='' className='' onSubmit={onSubmitHandler}>
           <div className='flex flex-col gap-8 mb-10 p-8 border border-line rounded-xl'>
             <Input

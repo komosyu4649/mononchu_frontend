@@ -123,20 +123,40 @@ export default async function StuffDetailProperty(props: Props) {
           },
         ]}
       />
-      <main className='w-defaultWidth m-auto mt-16'>
+      <main
+        className='
+        w-defaultWidth m-auto mt-16
+        md:w-lgWidth
+      '
+      >
         <h1
           className={`flex justify-center w-fit mb-4 m-auto px-6 py-2 text-[1.2rem] text-white bg-black font-bold  rounded-full`}
         >
           所有しているモノ
         </h1>
-        <div className='border-b border-line mb-8 pb-8'>
-          <ItemInformation
-            type='property'
-            itemDetailData={itemDetailData}
-            itemInfoList={itemInfoList}
-          />
+        <h2
+          className='
+          text-defaultTitle text-center
+          md:mb-10 md:lgTitle
+        '
+        >
+          {itemDetailData.name}
+        </h2>
+        <div className='md:grid md:grid-cols-2 md:gap-16'>
+          <div
+            className='
+            border-b border-line mb-8 pb-8
+            md:border-b-0 md:mb-0 md:pb-0
+          '
+          >
+            <ItemInformation
+              type='property'
+              itemDetailData={itemDetailData}
+              itemInfoList={itemInfoList}
+            />
+          </div>
+          <MemoContainer type='property' category={category} item={item} />
         </div>
-        <MemoContainer type='property' category={category} item={item} />
       </main>
     </>
   )

@@ -56,7 +56,14 @@ export default async function StuffPropertyNew(props: Props) {
               <Label size='md'>{propertyLimitedNumber}</Label>
             </div>
           </div>
-          <h1 className='text-defaultTitle text-center'>所有している{name}の追加</h1>
+          <h1
+            className='
+            text-defaultTitle text-center
+            md:text-lgTitle
+            '
+          >
+            所有している{name}の追加
+          </h1>
         </div>
         <CategoryAddForm category={category} type='property' />
       </main>

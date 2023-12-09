@@ -16,7 +16,7 @@ const ItemInformation = (props: Props) => {
   const { type, itemDetailData, itemInfoList } = props
   return (
     <>
-      <h2 className='mb-8 text-defaultTitle text-center'>{itemDetailData.name}</h2>
+      {/* <h2 className='mb-8 text-defaultTitle text-center'>{itemDetailData.name}</h2> */}
       <div className='grid grid-cols-2 gap-6'>
         <Image
           src='/assets/img/stuff/item.jpg'
@@ -24,7 +24,7 @@ const ItemInformation = (props: Props) => {
           alt={itemDetailData.name}
           width={300}
           height={300}
-          className='rounded-md'
+          className='w-full rounded-md'
         />
         <div className=''>
           <ul className=''>

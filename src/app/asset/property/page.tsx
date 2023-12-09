@@ -25,19 +25,33 @@ export default async function AssetProperty() {
           },
         ]}
       />
-      <main className='w-defaultWidth m-auto mt-16'>
-        <h1 className='text-defaultTitle text-center mb-10'>所有しているモノ</h1>
-        <p className='text-defaultText text-center'>
-          今所有しているモノの総額。
-          <br /> 好きなものにお金を使えているか確認しよう。
-        </p>
-        <div className='flex flex-row gap-4 mt-8 mb-10'>
-          <Button href='/asset' color='lightRev'>
-            すべてのモノ
-          </Button>
-          <Button href='/asset/want' color='light'>
-            欲しいモノ
-          </Button>
+      <main
+        className='
+        w-defaultWidth m-auto mt-16
+        md:w-mdWidth md:grid md:grid-cols-2 md:gap-12
+      '
+      >
+        <div className='md:py-8'>
+          <h1
+            className='
+          text-defaultTitle text-center mb-10
+          md:text-lgTitle
+          '
+          >
+            所有しているモノ
+          </h1>
+          <p className='text-defaultText text-center'>
+            今所有しているモノの総額。
+            <br /> 好きなものにお金を使えているか確認しよう。
+          </p>
+          <div className='flex flex-row gap-4 mt-8 mb-10'>
+            <Button href='/asset' color='lightRev'>
+              すべてのモノ
+            </Button>
+            <Button href='/asset/want' color='light'>
+              欲しいモノ
+            </Button>
+          </div>
         </div>
         <ChartContainer data={data} />
       </main>

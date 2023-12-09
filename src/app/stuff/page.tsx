@@ -21,10 +21,27 @@ export default async function Stuff() {
           },
         ]}
       />
-      <main className='w-defaultWidth m-auto mt-16'>
-        <h1 className='text-defaultTitle text-center mb-10'>モノ</h1>
+      <main
+        className='
+          w-defaultWidth m-auto mt-16
+          md:w-mdWidth
+        '
+      >
+        <h1
+          className='
+          text-defaultTitle text-center mb-10
+          md:text-lgTitle
+          '
+        >
+          モノ
+        </h1>
         <div className=''>
-          <ul className='grid grid-cols-2 gap-[.8rem] mb-8'>
+          <ul
+            className='
+            grid grid-cols-2 gap-[.8rem] mb-8
+            md:grid-cols-4
+          '
+          >
             {categories.data.map((category: StuffCategory) => {
               return (
                 <li className='' key={category.id}>

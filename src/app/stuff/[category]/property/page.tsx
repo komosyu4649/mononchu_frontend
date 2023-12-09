@@ -45,7 +45,12 @@ export default async function StuffDetailProperty(props: Props) {
           },
         ]}
       />
-      <main className='w-defaultWidth m-auto mt-16'>
+      <main
+        className='
+        w-defaultWidth m-auto mt-16
+        md:w-mdWidth
+      '
+      >
         <CategoryHeader type='child' category={category} />
         <div className='mt-10'>
           <div className='flex flex-row justify-between items-center mb-6'>
@@ -58,7 +63,12 @@ export default async function StuffDetailProperty(props: Props) {
               <Label size='md'>{categoryDetail.data.propertyLimitedNumber}</Label>
             </div>
           </div>
-          <ul className='grid grid-cols-2 gap-[.8rem] mb-6'>
+          <ul
+            className='
+            grid grid-cols-2 gap-[.8rem] mb-6
+            md:grid-cols-4
+          '
+          >
             {properties.data.map((property: StuffProperty) => (
               <li className='' key={property.id}>
                 <PropertyCard
