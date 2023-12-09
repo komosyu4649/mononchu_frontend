@@ -61,7 +61,14 @@ export default async function StuffWantNew(props: Props) {
               </span>
             </div>
           </div>
-          <h1 className='text-defaultTitle text-center'>欲しい{name}の追加</h1>
+          <h1
+            className='
+            text-defaultTitle text-center
+            md:text-lgTitle
+            '
+          >
+            欲しい{name}の追加
+          </h1>
         </div>
         <CategoryAddForm category={category} type='want' />
         {/* <form action='' className=''>

@@ -40,7 +40,12 @@ export default async function StuffDetail(props: Props) {
           },
         ]}
       />
-      <main className='w-defaultWidth m-auto mt-16'>
+      <main
+        className='
+          w-defaultWidth m-auto mt-16
+          md:w-mdWidth
+        '
+      >
         <CategoryHeader type='parent' category={category} />
         <div className='mt-10'>
           <div className='flex flex-row justify-between items-center mb-6'>
@@ -53,7 +58,12 @@ export default async function StuffDetail(props: Props) {
               <Label size='md'>{categoryData.data.propertyLimitedNumber}</Label>
             </div>
           </div>
-          <ul className='grid grid-cols-2 gap-[.8rem] mb-6'>
+          <ul
+            className='
+            grid grid-cols-2 gap-[.8rem] mb-6
+            md:grid-cols-4
+          '
+          >
             {properties.data.map((property: StuffProperty) => (
               <li key={property.id} className=''>
                 <PropertyCard
@@ -78,7 +88,12 @@ export default async function StuffDetail(props: Props) {
               </span>
             </div>
           </div>
-          <ul className='grid grid-cols-2 gap-x-[.8rem] gap-y-6 mb-6'>
+          <ul
+            className='
+            grid grid-cols-2 gap-x-[.8rem] gap-y-6 mb-6
+            md:grid-cols-4
+          '
+          >
             {wants.data.map((want: StuffWant) => (
               <li key={want.id} className=''>
                 <WantCard href={`/stuff/${category}/want/${want.id}`} want={want} />

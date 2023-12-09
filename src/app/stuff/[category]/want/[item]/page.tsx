@@ -143,74 +143,97 @@ export default async function StuffDetailWant(props: Props) {
           },
         ]}
       />
-      <main className='w-defaultWidth m-auto mt-16'>
+      <main
+        className='
+          w-defaultWidth m-auto mt-16
+          md:w-lgWidth
+        '
+      >
         <h1 className='flex justify-center w-fit mb-6 m-auto px-6 py-2 text-[1.2rem]  font-bold border border-line rounded-full'>
           欲しいモノ
         </h1>
-        <div className='border-b border-line mb-8 pb-8'>
-          <ItemInformation
-            type='want'
-            itemDetailData={itemDetailData}
-            itemInfoList={itemInfoList}
-          />
-          <Button href='?crud=move' className='mt-4' scroll={false}>
-            購入済みにする
-          </Button>
-          <div className='grid grid-cols-[auto_1fr] items-center mt-8 px-8 py-6 gap-8 border border-line rounded-md'>
-            <span className='text-[1.2rem] font-bold'>購入条件</span>
-            <div className='pl-8 border-l border-line'>
-              <ul className='flex flex-col gap-3'>
-                {itemDetailData.conditions.asset && (
-                  <li className='list-disc'>
-                    {/* <Checkbox
+        <h2
+          className='
+          text-defaultTitle text-center
+          md:mb-10 md:lgTitle
+        '
+        >
+          {itemDetailData.name}
+        </h2>
+        <div className='md:grid md:grid-cols-2 md:gap-16'>
+          <div
+            className='
+            border-b border-line mb-8 pb-8
+            md:border-b-0 md:mb-0 md:pb-0
+            '
+          >
+            <ItemInformation
+              type='want'
+              itemDetailData={itemDetailData}
+              itemInfoList={itemInfoList}
+            />
+            <Button href='?crud=move' className='mt-4' scroll={false}>
+              購入済みにする
+            </Button>
+            <div className='grid grid-cols-[auto_1fr] items-center mt-8 px-8 py-6 gap-8 border border-line rounded-md'>
+              <span className='text-[1.2rem] font-bold'>購入条件</span>
+              <div className='pl-8 border-l border-line'>
+                <ul className='flex flex-col gap-3'>
+                  {itemDetailData.conditions.asset && (
+                    <li className='list-disc'>
+                      {/* <Checkbox
                     id='conditions-asset'
                      text={`資産額${itemDetailData.conditions.asset}いったら`}
                    /> */}
-                    <p className='text-[1.2rem]'>資産額{itemDetailData.conditions.asset}いったら</p>
-                  </li>
-                )}
-                {itemDetailData.conditions.period && (
-                  <li className='list-disc'>
-                    {/* <Checkbox
+                      <p className='text-[1.2rem]'>
+                        資産額{itemDetailData.conditions.asset}いったら
+                      </p>
+                    </li>
+                  )}
+                  {itemDetailData.conditions.period && (
+                    <li className='list-disc'>
+                      {/* <Checkbox
                      id='conditions-period'
                      text={`${itemDetailData.conditions.period}まで欲しかったら`}
                    /> */}
-                    <p className='text-[1.2rem]'>
-                      {itemDetailData.conditions.period}まで欲しかったら
-                    </p>
-                  </li>
-                )}
-                {itemDetailData.conditions.property && (
-                  <li className='list-disc'>
-                    {/* <Checkbox
+                      <p className='text-[1.2rem]'>
+                        {itemDetailData.conditions.period}まで欲しかったら
+                      </p>
+                    </li>
+                  )}
+                  {itemDetailData.conditions.property && (
+                    <li className='list-disc'>
+                      {/* <Checkbox
                       id='conditions-property'
                       text={`${categoryDetailData.name}が${itemDetailData.conditions.property}点以下だったら`}
                     /> */}
-                    <p className='text-[1.2rem]'>
-                      {categoryDetailData.name}が{itemDetailData.conditions.property}点以下だったら
-                    </p>
-                  </li>
-                )}
-              </ul>
+                      <p className='text-[1.2rem]'>
+                        {categoryDetailData.name}が{itemDetailData.conditions.property}
+                        点以下だったら
+                      </p>
+                    </li>
+                  )}
+                </ul>
+              </div>
+            </div>
+            <div className='mt-6 px-8 py-6 gap-8 border border-line rounded-md'>
+              <p className='text-[1.2rem] font-bold '>
+                {itemDetailData.price.toLocaleString()}円を全世界株の平均6%で運用してみると...
+              </p>
+              <div className='flex flex-row gap-2 mt-3'>
+                {assetCalculationList.map((item, index) => (
+                  <span
+                    key={item.year}
+                    className='pr-4 text-[1.2rem] text-center border-r border-line last:p-0 last:border-none'
+                  >
+                    {item.year} : {item.amount}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
-          <div className='mt-6 px-8 py-6 gap-8 border border-line rounded-md'>
-            <p className='text-[1.2rem] font-bold '>
-              {itemDetailData.price.toLocaleString()}円を全世界株の平均6%で運用してみると...
-            </p>
-            <div className='flex flex-row gap-2 mt-3'>
-              {assetCalculationList.map((item, index) => (
-                <span
-                  key={item.year}
-                  className='pr-4 text-[1.2rem] text-center border-r border-line last:p-0 last:border-none'
-                >
-                  {item.year} : {item.amount}
-                </span>
-              ))}
-            </div>
-          </div>
+          <MemoContainer type='want' category={category} item={item} />
         </div>
-        <MemoContainer type='want' category={category} item={item} />
       </main>
     </>
   )

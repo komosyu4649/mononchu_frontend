@@ -19,8 +19,21 @@ export default function Home() {
   ]
   return (
     <main className='w-defaultWidth m-auto mt-16'>
-      <h1 className='text-defaultTitle text-center mb-10'>マイページ</h1>
-      <div className='flex flex-col gap-6'>
+      <h1
+        className='
+        text-defaultTitle text-center mb-10
+        md:text-lgTitle
+      '
+      >
+        マイページ
+      </h1>
+      <div
+        className='
+        flex flex-col gap-6
+        md:flex-row md:justify-center md:gap-6
+      '
+        text-lgTitle
+      >
         {guides.map((guide) => (
           <div
             key={guide.linkText}
