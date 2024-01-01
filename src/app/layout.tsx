@@ -7,6 +7,8 @@ import Menu from '@/components/Menu'
 import Breadcrumb from '@/components/Breadcrumb'
 import Button from '@/components/Button'
 import { getServerSession } from 'next-auth'
+import { options } from '@/constants/auth'
+import Providers from '@/components/Providers'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -14,14 +16,17 @@ export const metadata: Metadata = {
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const userSession = await getServerSession()
+  const userSession = await getServerSession(options)
   console.log('userSession', userSession)
+
   return (
     <html lang='ja'>
       <body className='mb-36'>
-        <Header />
-        {children}
-        <Menu />
+        <Providers>
+          <Header />
+          {children}
+          <Menu />
+        </Providers>
       </body>
     </html>
   )

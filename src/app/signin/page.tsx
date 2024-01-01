@@ -2,10 +2,25 @@
 
 import Breadcrumb from '@/components/Breadcrumb'
 import Button from '@/components/Button'
-import { signIn } from 'next-auth/react'
+import { getSession, signIn, useSession } from 'next-auth/react'
 import React from 'react'
 
 export default function Signin() {
+  const { data: session } = useSession()
+
+  const handleSignIn = async () => {
+    const result = await signIn('google', { callbackUrl: '/' })
+    console.log('result', result)
+
+    if (result?.ok) {
+      // console.log('ok')
+      const session = await getSession()
+      // console.log('session', session)
+    }
+  }
+
+  // console.log('session', session)
+
   return (
     <>
       <Breadcrumb
@@ -40,7 +55,7 @@ export default function Signin() {
             <br />
             アカウントを作成して所有しているモノと欲しいモノの管理をはじめよう！
           </p>
-          <Button onClick={() => signIn()}>ログインする</Button>
+          <Button onClick={handleSignIn}>ログインする</Button>
           <p className='text-defaultText'>
             利用規約、プライバシーポリシーに同意したうえでログインしてください。
           </p>
