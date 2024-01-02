@@ -4,9 +4,19 @@ import CategoryCard from '@/components/stuff/CategoryCard'
 import React from 'react'
 import axios from 'axios'
 import { StuffCategory } from '@/type'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '../api/auth/[...nextauth]/route'
 
 export default async function Stuff() {
-  const categories = await axios.get(`${process.env.NEST_API}/stuff/category`)
+  const userSession = await getServerSession(authOptions)
+  console.log('userSession', userSession)
+  const categories = await axios.get(`${process.env.NEST_API}/stuff/category`, {
+    headers: {
+      authorization: `Bearer ${userSession?.backendTokens.accessToken}`,
+      'Content-Type': 'application/json',
+    },
+  })
+  console.log('categories', categories.data)
   return (
     <>
       <Breadcrumb
@@ -42,13 +52,13 @@ export default async function Stuff() {
             md:grid-cols-4
           '
           >
-            {categories.data.map((category: StuffCategory) => {
+            {/* {categories.data.map((category: StuffCategory) => {
               return (
                 <li className='' key={category.id}>
                   <CategoryCard category={category} />
                 </li>
               )
-            })}
+            })} */}
           </ul>
           <Button href='/stuff/new'>カテゴリーを追加</Button>
         </div>

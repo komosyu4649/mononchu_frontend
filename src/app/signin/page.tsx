@@ -10,7 +10,7 @@ export default function Signin() {
 
   const handleSignIn = async () => {
     const result = await signIn('google', { callbackUrl: '/' })
-    console.log('result', result)
+    // console.log('result', result)
 
     if (result?.ok) {
       // console.log('ok')
