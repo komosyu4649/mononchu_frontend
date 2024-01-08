@@ -1,12 +1,14 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { use, useMemo, useState } from 'react'
 import Modal from '../Modal'
 import Input from '../Input'
 import Button from '../Button'
-import { usePathname, useSearchParams } from 'next/navigation'
+import { usePathname, useSearchParams, useRouter } from 'next/navigation'
 import EmojiSelectBox from '../EmojiSelectInput'
 import axios from 'axios'
+import { useSession } from 'next-auth/react'
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 
 type Props = {
   category: string
@@ -14,7 +16,7 @@ type Props = {
 
 const CategoryModals = (props: Props) => {
   const { category } = props
-  const router = usePathname()
+  const router = useRouter()
   const searchParams = useSearchParams()
   const crud = searchParams.get('crud')
 
@@ -22,7 +24,7 @@ const CategoryModals = (props: Props) => {
   params.delete('crud')
 
   const closeLink = {
-    pathname: router,
+    pathname: usePathname(),
     query: Object.fromEntries(params),
   }
 
@@ -31,38 +33,61 @@ const CategoryModals = (props: Props) => {
     return res
   }
 
-  existingInformation(category).then((res) => {
-    setName(res.data.name)
-    setLimit(res.data.propertyLimitedNumber)
-    setIcon(res.data.icon)
-  })
+  useMemo(() => {
+    existingInformation(category).then((res) => {
+      // console.log('1icon', res.data.icon)
+      // console.log('existingInformation', res.data)
+      setName(res.data.name)
+      setLimit(res.data.propertyLimitedNumber)
+      setIcon(res.data.icon)
+    })
+  }, [category])
+
+  const { data: session } = useSession()
+  const userId = session?.user.id
 
   const [name, setName] = useState('')
   const [limit, setLimit] = useState('')
   const [icon, setIcon] = useState('')
+  // console.log('2icon', icon)
 
   const onSubmitEditHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    // console.log(11111, category)
     e.preventDefault()
-
-    const res = await axios.patch(
-      `${process.env.NEXT_PUBLIC_NEST_API}/stuff/category/edit/${category}`,
-      {
-        name: name,
-        icon: `&#x${icon};`,
-        propertyLimitedNumber: limit,
-      },
-    )
-    return res
+    if (!userId) return
+    // console.log('edit', name, icon, limit, session?.user.id)
+    // console.log('3icon', icon)
+    try {
+      const res = await axios.patch(
+        `${process.env.NEXT_PUBLIC_NEST_API}/stuff/category/edit/${category}`,
+        {
+          name: name,
+          icon: `${icon}`,
+          propertyLimitedNumber: Number(limit),
+          userId: userId,
+        },
+        // {
+        //   headers: {
+        //     authorization: `Bearer ${session?.backendTokens.accessToken}`,
+        //     'Content-Type': 'application/json',
+        //   },
+        // },
+      )
+      return res
+    } catch (error) {
+      console.log('error', error)
+    }
   }
 
   const onClickDeleteHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     const res = await axios.delete(
-      `${process.env.NEXT_PUBLIC_NEST_API}/stuff/category/delete/${category}`,
+      `${process.env.NEXT_PUBLIC_NEST_API}/stuff/category/delete/${userId}/${category}`,
     )
+    router.push('/stuff')
     return res
   }
-
+  // console.log('name', name)
   return (
     <>
       {crud === 'edit' && (
@@ -79,7 +104,7 @@ const CategoryModals = (props: Props) => {
               <EmojiSelectBox
                 id='cat-icon'
                 label='カテゴリーアイコン'
-                onEmojiSelect={(emoji) => setIcon(emoji.unifiedWithoutSkinTone)}
+                onEmojiSelect={(emoji) => setIcon(`&#x${emoji.unifiedWithoutSkinTone};`)}
                 initEmoji={icon}
               />
               <Input
@@ -90,7 +115,10 @@ const CategoryModals = (props: Props) => {
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLimit(e.target.value)}
               />
             </div>
-            <Button type='submit' href={closeLink}>
+            <Button
+              type='submit'
+              // href={closeLink}
+            >
               変更
             </Button>
           </form>
@@ -107,7 +135,7 @@ const CategoryModals = (props: Props) => {
               </p>
             </div>
             <div className='flex flex-row gap-4 mt-8'>
-              <Button color='dangerRev' onClick={onClickDeleteHandler} href='/stuff'>
+              <Button color='dangerRev' onClick={onClickDeleteHandler}>
                 削除
               </Button>
               <Button color='light' href={closeLink}>

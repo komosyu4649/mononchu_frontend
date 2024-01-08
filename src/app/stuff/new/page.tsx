@@ -1,24 +1,49 @@
 'use client'
 
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import Breadcrumb from '@/components/Breadcrumb'
 import Button from '@/components/Button'
 import EmojiSelectBox from '@/components/EmojiSelectInput'
 import Input from '@/components/Input'
 import axios from 'axios'
+import { useSession } from 'next-auth/react'
+import { usePathname, useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 
 export default function StuffNew() {
+  const router = useRouter()
+  const { data: session } = useSession()
+  // console.log('session', session)
   const [name, setName] = useState('')
   const [limit, setLimit] = useState('')
   const [icon, setIcon] = useState('')
   const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const res = await axios.post(`${process.env.NEXT_PUBLIC_NEST_API}/stuff/category/create`, {
-      name: name,
-      icon: `&#x${icon};`,
-      propertyLimitedNumber: limit,
-    })
-    return res
+    // console.log(222)
+    if (!session) return
+    try {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_NEST_API}/stuff/category/create`,
+        {
+          name: name,
+          icon: `&#x${icon};`,
+          propertyLimitedNumber: Number(limit),
+          userId: session?.user.id,
+        },
+        {
+          headers: {
+            authorization: `Bearer ${session?.backendTokens.accessToken}`,
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+      router.push('/stuff')
+      // console.log('res', res)
+
+      return res
+    } catch (error) {
+      console.log('error', error)
+    }
   }
   return (
     <>
